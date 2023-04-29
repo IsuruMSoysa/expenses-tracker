@@ -1,0 +1,27 @@
+.login-cont {
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+  .login-panel {
+    color: $brand-font-color;
+    h4 {
+      font-weight: 700;
+      font-size: 1.7em;
+    }
+    label {
+      font-size: 0.8em;
+    }
+    input {
+      background-color: transparent;
+      color: $primary-font-color;
+      border: solid 1px $primary-color;
+    }
+    .create-account-label {
+      label {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+}
