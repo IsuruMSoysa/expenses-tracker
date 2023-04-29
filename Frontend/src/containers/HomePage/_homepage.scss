@@ -1,0 +1,11 @@
+.homepage-container {
+  height: 96vh;
+  align-items: center;
+  .welcome-label {
+    color: $primary-color;
+    font-weight: 700;
+  }
+  p {
+    color: $secondary-font-color;
+  }
+}

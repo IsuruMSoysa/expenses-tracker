@@ -1,0 +1,20 @@
+@import "variables";
+
+/* Global styles */
+html,
+body {
+  font-family: "Montserrat", "Poppins", sans-serif;
+  background-color: $background-color;
+  color: $primary-font-color;
+  padding: 0;
+  margin: 0;
+
+  .main-app-container {
+    height: 96vh;
+    overflow: hidden;
+  }
+}
+
+/* Import other SCSS files */
+@import "./../components/common/Footer/footer";
+@import "./../containers/HomePage/homepage";
