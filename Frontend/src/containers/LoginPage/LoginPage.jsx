@@ -1,6 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
 // import { useState } from "react";
 import ProjectButton from "../../components/common/Button";
-import { Row, Col, Button, Form } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 // import axios from "axios";
