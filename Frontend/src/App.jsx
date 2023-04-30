@@ -6,6 +6,8 @@ import Dashboard from "./containers/DashboardPage/DashboardPage";
 import SignIn from "./containers/SignInPage/SignInPage";
 import ErrorPage from "./containers/ErrorPage/ErrorPage";
 import Footer from "./components/common/Footer";
+import MyAccount from "./containers/MyAccountPage/MyAccountPage";
+import ArchivedPage from "./containers/ArchivedPage/ArchivedPage";
 
 const router = createBrowserRouter([
   {
@@ -18,12 +20,20 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/dashboard",
+    path: "/Dashboard",
     element: <Dashboard />,
   },
   {
     path: "/signIn",
     element: <SignIn />,
+  },
+  {
+    path: "/Account",
+    element: <MyAccount />,
+  },
+  {
+    path: "/Archived",
+    element: <ArchivedPage />,
   },
 ]);
 
