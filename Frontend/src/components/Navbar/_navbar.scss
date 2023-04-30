@@ -1,0 +1,22 @@
+.navbar-cont {
+  background-color: $secondary-color;
+  height: 7vh;
+  border-radius: 1em;
+  align-items: center;
+
+  .logo-section {
+    color: $primary-color;
+    font-weight: 700;
+    font-size: 1.6em;
+  }
+  .nav-menuitem {
+    cursor: pointer;
+  }
+  .nav-menuitem-selected {
+    background-color: $primary-color;
+    border-radius: 1em;
+    color: $background-color;
+    cursor: pointer;
+    font-weight: 600;
+  }
+}
