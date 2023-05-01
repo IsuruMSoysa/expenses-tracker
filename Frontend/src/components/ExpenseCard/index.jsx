@@ -4,7 +4,7 @@ import { Row, Col } from "react-bootstrap";
 
 function ExpenseCard(props) {
   const [expenseType, setExpenseType] = useState("autorenew");
-  const [carBg, setCardBg] = useState("red");
+  const [carBg, setCardBg] = useState("grey");
 
   useEffect(matchIconName, [props.type]);
 
@@ -50,9 +50,7 @@ function ExpenseCard(props) {
             <label>{props.date}</label>
           </Col>
           <Col className="expand-icon text-end">
-            <span className="material-symbols-outlined p-1">
-              expand_content
-            </span>
+            <span className="material-symbols-outlined p-1">open_in_new</span>
           </Col>
         </Row>
         <Row className="card-2-cont">

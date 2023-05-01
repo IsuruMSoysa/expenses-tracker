@@ -1,0 +1,11 @@
+.expense-log-title {
+  height: 7vh;
+}
+.expense-cards-cont {
+  overflow-y: scroll;
+  height: 80vh;
+  .card-cube {
+    display: grid;
+    justify-items: center;
+  }
+}
