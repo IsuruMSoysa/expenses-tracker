@@ -11,6 +11,8 @@ import ArchivedPage from "./containers/ArchivedPage/ArchivedPage";
 import AddExpensePage from "./containers/AddExpesnsePage/AddExpense";
 import ViewExpensesPage from "./containers/ViewExpensesPage/ViewExpensesPage";
 import EditExpensePage from "./containers/EditExpensesPage/EditExpensePage";
+import EditProfilePage from "./containers/EditProfilePage/EditProfilePage";
+import ProfilePictureUpload from "./components/ProfilePictureUpload/ProfilePictureUpload";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +51,14 @@ const router = createBrowserRouter([
   {
     path: "/EditItem",
     element: <EditExpensePage />,
+  },
+  {
+    path: "/EditProfile",
+    element: <EditProfilePage />,
+  },
+  {
+    path: "/UploadProfilePicture",
+    element: <ProfilePictureUpload />,
   },
 ]);
 

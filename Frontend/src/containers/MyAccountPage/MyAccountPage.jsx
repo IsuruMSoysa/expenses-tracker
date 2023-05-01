@@ -1,5 +1,6 @@
 import { Row, Col } from "react-bootstrap";
 import Navbar from "../../components/Navbar";
+import Profile from "../../components/Profile/Profile";
 
 function MyAccountPage() {
   return (
@@ -7,6 +8,7 @@ function MyAccountPage() {
       <Row>
         <Col className="pt-2">
           <Navbar />
+          <Profile />
         </Col>
       </Row>
     </>

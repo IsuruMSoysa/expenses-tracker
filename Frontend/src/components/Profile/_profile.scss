@@ -1,0 +1,44 @@
+.prof-det-pop-cont {
+  display: grid;
+  height: 96vh;
+  justify-items: center;
+  align-items: center;
+
+  .prof-title {
+    color: $primary-color;
+  }
+  .prof-amount h2 {
+    color: $primary-color;
+    font-weight: 700;
+  }
+  .prof-descrip {
+    font-size: 0.9em;
+  }
+  .profile-pc-cont {
+    display: grid;
+    justify-items: center;
+    .profile-pic {
+      height: 25vh;
+      display: grid;
+      width: 25vh;
+      background-color: $secondary-color;
+      border-radius: 50%;
+      border: 0.1em solid $primary-color;
+      align-items: center;
+      font-size: 8vh;
+      font-weight: 600;
+    }
+    .profile-edit-btn {
+      height: 5vh;
+      display: grid;
+      width: 5vh;
+      background-color: $background-color;
+      border: 3px solid $primary-color;
+      border-radius: 50%;
+      justify-items: center;
+      align-items: center;
+      margin-top: -5.5vh;
+      margin-left: 15vh;
+    }
+  }
+}
