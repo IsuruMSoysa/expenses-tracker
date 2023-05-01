@@ -12,15 +12,36 @@ function DashboardPage() {
           </Col>
         </Row>
         <Row className="dash-content">
-          <Col className=" bg-warning" xl={3}>
-            <Row className="dash-profile-section bg-info">
-              <Col>hi</Col>
+          <Col className="dash-side-section my-1" xl={3}>
+            <Row className="dash-total-section">
+              <Col>
+                <Row>
+                  <Col className="total-card">
+                    <label>Total Earnings</label>
+                    <h4>Rs.100000</h4>
+                  </Col>
+                  <Col className="total-card">
+                    <label>Total Expenses</label>
+                    <h4>Rs.100000</h4>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col className="total-card text-center">
+                    <label>Total Leftover</label>
+                    <h2>Rs.100000</h2>
+                  </Col>
+                </Row>
+              </Col>
             </Row>
             <Row className="dash-data-section">
-              <Col>hi</Col>
+              <Col>
+                <Row>
+                  <Col>hi</Col>
+                </Row>
+              </Col>
             </Row>
           </Col>
-          <Col className="dash-main-content" xl={8}>
+          <Col className="dash-main-content ms-xl-4" xl={8}>
             <ExpensesLog />
           </Col>
         </Row>
