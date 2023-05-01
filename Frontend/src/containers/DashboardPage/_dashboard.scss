@@ -5,6 +5,16 @@
   }
 
   .dash-content {
-    height: 87.5vh;
+    height: 87vh;
+    .dash-profile-section {
+      height: 40vh;
+    }
+    .dash-data-section {
+      height: 47vh;
+    }
+    .dash-main-content {
+      display: grid;
+      justify-items: center;
+    }
   }
 }

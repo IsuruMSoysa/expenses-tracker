@@ -1,6 +1,6 @@
 import { Row, Col } from "react-bootstrap";
 import Navbar from "../../components/Navbar";
-import ExpenseCard from "../../components/ExpenseCard";
+import ExpensesLog from "../../components/ExpensesLog";
 
 function DashboardPage() {
   return (
@@ -12,16 +12,16 @@ function DashboardPage() {
           </Col>
         </Row>
         <Row className="dash-content">
-          <Col className="dash-side-nav bg-warning" xl={2}>
-            hi
+          <Col className=" bg-warning" xl={3}>
+            <Row className="dash-profile-section bg-info">
+              <Col>hi</Col>
+            </Row>
+            <Row className="dash-data-section">
+              <Col>hi</Col>
+            </Row>
           </Col>
-          <Col className="dash-main-content" xl={10}>
-            <ExpenseCard
-              amount={100000}
-              title={"House Rent"}
-              date={"2023.05.01"}
-              type={"Rent"}
-            />
+          <Col className="dash-main-content" xl={8}>
+            <ExpensesLog />
           </Col>
         </Row>
       </Col>
