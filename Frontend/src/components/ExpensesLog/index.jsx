@@ -7,7 +7,13 @@ function ExpensesLog() {
       amount: "100000",
       title: "House Rent",
       date: "2023.05.01",
-      type: "Food",
+      type: "Transport",
+    },
+    {
+      amount: "100000",
+      title: "House Rent",
+      date: "2023.05.01",
+      type: "Rent",
     },
     {
       amount: "100000",
@@ -19,19 +25,13 @@ function ExpensesLog() {
       amount: "100000",
       title: "House Rent",
       date: "2023.05.01",
-      type: "Food",
+      type: "Utilities",
     },
     {
       amount: "100000",
       title: "House Rent",
       date: "2023.05.01",
-      type: "Food",
-    },
-    {
-      amount: "100000",
-      title: "House Rent",
-      date: "2023.05.01",
-      type: "Food",
+      type: "Entertainment",
     },
     {
       amount: "100000",

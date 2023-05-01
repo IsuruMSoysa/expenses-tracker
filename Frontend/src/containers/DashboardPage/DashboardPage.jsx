@@ -1,6 +1,7 @@
 import { Row, Col } from "react-bootstrap";
 import Navbar from "../../components/Navbar";
 import ExpensesLog from "../../components/ExpensesLog";
+import CategoryData from "../../components/CategoryData";
 
 function DashboardPage() {
   return (
@@ -36,7 +37,9 @@ function DashboardPage() {
             <Row className="dash-data-section">
               <Col>
                 <Row>
-                  <Col>hi</Col>
+                  <Col>
+                    <CategoryData />
+                  </Col>
                 </Row>
               </Col>
             </Row>

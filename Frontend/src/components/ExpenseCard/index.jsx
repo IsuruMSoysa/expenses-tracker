@@ -4,7 +4,8 @@ import { Row, Col } from "react-bootstrap";
 
 function ExpenseCard(props) {
   const [expenseType, setExpenseType] = useState("autorenew");
-  const [carBg, setCardBg] = useState("grey");
+  const [cardBg, setCardBg] = useState("grey");
+  const [cardBg2, setCardBg2] = useState("grey");
 
   useEffect(matchIconName, [props.type]);
 
@@ -13,22 +14,27 @@ function ExpenseCard(props) {
       case "Transport":
         setExpenseType("directions_car");
         setCardBg("#0AD357");
+        setCardBg2("#00C48E");
         break;
       case "Rent":
         setExpenseType("attach_money");
-        setCardBg("#FFE100");
+        setCardBg("#FBE432");
+        setCardBg2("#B3D42B");
         break;
       case "Food":
         setExpenseType("restaurant");
-        setCardBg("#00A6FF");
+        setCardBg("#D5B0E2");
+        setCardBg2("#BD5DE7");
         break;
       case "Utilities":
         setExpenseType("construction");
-        setCardBg("#E863FF");
+        setCardBg("#FAA875");
+        setCardBg2("#E68787");
         break;
       case "Entertainment":
         setExpenseType("celebration");
-        setCardBg("#1abda9");
+        setCardBg("#00DEFF");
+        setCardBg2("#00A6C6");
         break;
       default:
         setExpenseType("autorenew");
@@ -36,10 +42,15 @@ function ExpenseCard(props) {
     }
   }
   return (
-    <Row className="expense-card m-1" style={{ backgroundColor: carBg }}>
+    <Row
+      className="expense-card m-1"
+      style={{
+        backgroundImage: `linear-gradient(to bottom right, ${cardBg}, ${cardBg2})`,
+      }}
+    >
       <Col xs={2}>
         <div className="icon-div">
-          <span className="material-symbols-outlined" style={{ color: carBg }}>
+          <span className="material-symbols-outlined" style={{ color: cardBg }}>
             {expenseType}
           </span>
         </div>
