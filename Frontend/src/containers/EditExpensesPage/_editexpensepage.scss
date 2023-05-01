@@ -1,9 +1,9 @@
-.create-expense-cont {
+.edit-expense-cont {
   height: 100%;
   align-items: center;
   justify-content: center;
   overflow-y: auto;
-  .create-expense {
+  .edit-expense {
     color: $brand-font-color;
     h4 {
       font-weight: 700;
@@ -19,7 +19,7 @@
       border: solid 1px $primary-color;
     }
 
-    .create-account-label {
+    .edit-account-label {
       label {
         text-decoration: underline;
         cursor: pointer;

@@ -1,0 +1,17 @@
+.exp-det-pop-cont {
+  display: grid;
+  height: 96vh;
+  justify-items: center;
+  align-items: center;
+
+  .exp-title {
+    color: $primary-color;
+  }
+  .exp-amount h2 {
+    color: $primary-color;
+    font-weight: 700;
+  }
+  .exp-descrip {
+    font-size: 0.9em;
+  }
+}

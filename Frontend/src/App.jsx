@@ -9,6 +9,8 @@ import Footer from "./components/common/Footer";
 import MyAccount from "./containers/MyAccountPage/MyAccountPage";
 import ArchivedPage from "./containers/ArchivedPage/ArchivedPage";
 import AddExpensePage from "./containers/AddExpesnsePage/AddExpense";
+import ViewExpensesPage from "./containers/ViewExpensesPage/ViewExpensesPage";
+import EditExpensePage from "./containers/EditExpensesPage/EditExpensePage";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
   {
     path: "/AddItem",
     element: <AddExpensePage />,
+  },
+  {
+    path: "/ViewItem",
+    element: <ViewExpensesPage />,
+  },
+  {
+    path: "/EditItem",
+    element: <EditExpensePage />,
   },
 ]);
 
