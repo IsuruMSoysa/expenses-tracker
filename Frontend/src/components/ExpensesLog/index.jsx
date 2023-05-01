@@ -116,7 +116,7 @@ function ExpensesLog() {
     <Row>
       <Col>
         <Row>
-          <Col className="expense-log-title text-center px-0 py-2">
+          <Col className="expense-log-title text-center px-lg-4 py-2">
             <h4>Expenses Log</h4>
           </Col>
         </Row>

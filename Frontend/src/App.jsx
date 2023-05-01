@@ -8,6 +8,7 @@ import ErrorPage from "./containers/ErrorPage/ErrorPage";
 import Footer from "./components/common/Footer";
 import MyAccount from "./containers/MyAccountPage/MyAccountPage";
 import ArchivedPage from "./containers/ArchivedPage/ArchivedPage";
+import AddExpensePage from "./containers/AddExpesnsePage/AddExpense";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: "/Archived",
     element: <ArchivedPage />,
+  },
+  {
+    path: "/AddItem",
+    element: <AddExpensePage />,
   },
 ]);
 
