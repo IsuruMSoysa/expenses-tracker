@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-function AddExpensePage() {
+function EditExpensePage() {
   const navigate = useNavigate();
   const [dob, setDob] = useState("");
   const [typeList, seTypeList] = useState([
@@ -24,9 +24,9 @@ function AddExpensePage() {
   };
 
   return (
-    <Row className="create-expense-cont mx-3 my-2">
-      <Col className="create-expense  p-md-4" xl={6} md={5} sm={6} xs={10}>
-        <h4 className="text-center py-3 mt-4">Add Expense Item</h4>
+    <Row className="edit-expense-cont mx-3 my-2">
+      <Col className="edit-expense  p-md-4" xl={6} md={5} sm={6} xs={10}>
+        <h4 className="text-center py-3 mt-4">Edit Expense Item</h4>
         <Form>
           <Form.Group className="row">
             <Form.Group className="col-xl-6 mb-3" controlId="forExpenseName">
@@ -100,12 +100,19 @@ function AddExpensePage() {
                 />
               </Form.Group>
             </Form.Group>
-            <Form.Group className="text-center" controlId="addExpBtn">
+            <Form.Group className="text-center" controlId="EditExpBtn">
               <ProjectButton
-                label="Add Expense"
+                label="Save Expense"
                 backgroundColor="#0ad357"
                 size="small"
                 // btnOnClick={() => navigate("/login")}
+              />
+              <ProjectButton
+                label="Back"
+                backgroundColor="#717171"
+                size="small"
+                color="#ffffff"
+                btnOnClick={() => navigate(-1)}
               />
             </Form.Group>
           </Form.Group>
@@ -115,4 +122,4 @@ function AddExpensePage() {
   );
 }
 
-export default AddExpensePage;
+export default EditExpensePage;
