@@ -6,12 +6,39 @@
 
   .dash-content {
     height: 87vh;
-    .dash-profile-section {
-      height: 40vh;
+    .dash-side-section {
+      // border-right: 2px solid $secondary-color;
+      // background-color: $secondary-color;
+      border-radius: 1em;
+      margin-left: 1.5vw;
+
+      .dash-total-section {
+        height: 40vh;
+        .total-card {
+          background-image: linear-gradient(
+            to bottom right,
+            $secondary-font-color,
+            $secondary-color
+          );
+          height: 18vh;
+          border-radius: 1em;
+          margin: 6px;
+          display: grid;
+          justify-content: center;
+          align-items: center;
+          padding: 4vh 0;
+
+          h2,
+          h4 {
+            font-weight: 800;
+          }
+        }
+      }
+      .dash-data-section {
+        height: 47vh;
+      }
     }
-    .dash-data-section {
-      height: 47vh;
-    }
+
     .dash-main-content {
       display: grid;
       justify-items: center;
