@@ -2,10 +2,16 @@
   height: 7vh;
 }
 .expense-cards-cont {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 80vh;
   .card-cube {
     display: grid;
     justify-items: center;
   }
+}
+
+.inner-loading {
+  display: grid;
+  justify-items: center;
+  align-items: center;
 }

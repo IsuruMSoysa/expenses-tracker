@@ -1,13 +1,40 @@
 /* eslint-disable react/no-unescaped-entities */
 // import { useState } from "react";
+import { useState } from "react";
 import ProjectButton from "../../components/common/Button";
 import { Row, Col, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "./../../features/auth/authSlice";
+import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
 
 // import axios from "axios";
 
 function LoginPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const authObj = useSelector((state) => state.auth);
+
+  const handleSubmit = async (e) => {
+    dispatch(toggleLoading());
+    e.preventDefault();
+    try {
+      let validate = await dispatch(login(email, password));
+      // console.log(authObj);
+      if (validate.success) {
+        dispatch(toggleLoading());
+        navigate("/Dashboard");
+      } else {
+        dispatch(toggleLoading());
+        alert(validate.message);
+      }
+    } catch (error) {
+      dispatch(toggleLoading());
+      console.log(error.message);
+    }
+  };
 
   return (
     <Row className="login-cont">
@@ -16,26 +43,38 @@ function LoginPage() {
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
           </Form.Group>
           <Form.Group className="text-center" controlId="loginBtn">
             <ProjectButton
               label="Log in"
-              backgroundColor="#1abda9"
+              backgroundColor="#0ad357"
               size="small"
-              // btnOnClick={() => navigate("/login")}
+              btnOnClick={handleSubmit}
             />
           </Form.Group>
           <Form.Group
             className="mt-3 create-account-label text-center"
             controlId="createAccount"
           >
-            <Form.Label onClick={() => navigate("/signin")}>
+            <Form.Label onClick={() => navigate("/signup")}>
               Don't have an account? Create Account
             </Form.Label>
           </Form.Group>
