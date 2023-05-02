@@ -3,8 +3,31 @@ import Navbar from "../../components/Navbar";
 import ExpensesLog from "../../components/ExpensesLog";
 import CategoryData from "../../components/CategoryData";
 import AddButton from "../../components/AddButton";
+import { db } from "../../firebase-config";
+import { collection, getDocs } from "@firebase/firestore";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchExpenses } from "./../../features/expenses/expensesSlice";
 
 function DashboardPage() {
+  const dispatch = useDispatch();
+  const expensesArr = useSelector((state) => state.expenses);
+  // const usersCollectionRef = collection(db, "expense");
+  // const [expenses, setExpenses] = useState([]);
+
+  // useEffect(() => {
+  //   const getExpenses = async () => {
+  //     const data = await getDocs(usersCollectionRef);
+  //     const minData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  //     setExpenses(minData);
+  //   };
+  //   getExpenses();
+  // }, []);
+
+  useEffect(() => {
+    dispatch(fetchExpenses());
+  }, [dispatch]);
+
   return (
     <>
       <div className="add-btn-section">
@@ -39,7 +62,7 @@ function DashboardPage() {
                   </Row>
                 </Col>
               </Row>
-              <Row className="dash-data-section">
+              <Row className="dash-data-section pb-4">
                 <Col>
                   <Row>
                     <Col>
@@ -50,7 +73,7 @@ function DashboardPage() {
               </Row>
             </Col>
             <Col className="dash-main-content ms-xl-4" xl={8}>
-              <ExpensesLog />
+              <ExpensesLog expenses={expensesArr.expenses} />
             </Col>
           </Row>
         </Col>

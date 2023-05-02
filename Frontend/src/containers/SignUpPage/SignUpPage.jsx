@@ -5,11 +5,23 @@ import { Row, Col, Form, Dropdown, DropdownButton } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
+import { signup } from "../../features/auth/authSlice";
 
 const countriesAPI = "https://restcountries.com/v3.1/all";
 
-function SignInPage() {
+function SignUpPage() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const authObj = useSelector((state) => state.auth);
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [city, setCity] = useState("");
   const [dob, setDob] = useState("");
   const [countryList, setCountryList] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -36,8 +48,8 @@ function SignInPage() {
       .catch((error) => console.log(error));
   }, []);
 
-  const handleDateChange = (value, formattedValue) => {
-    setDob(formattedValue);
+  const handleDateChange = (value) => {
+    setDob(value);
   };
 
   function handlePasswordChange(event) {
@@ -55,21 +67,47 @@ function SignInPage() {
     setShowSpecialCharMessage(!/[@#$%^&+=]/.test(newPassword));
   }
 
-  // function handleCreateUser(event) {
-  //   let validation;
-  //   event.preventDefault();
-  //   signUpWithEmailPassword(props.email, password).then((response) => {
-  //     validation = response;
-  //     console.log(response);
-  //     if (validation.uid) {
-  //       props.setPanel(4);
-  //       localStorage.setItem("accessToken", validation.accessToken);
-  //       localStorage.setItem("uid", validation.uid);
-  //     } else {
-  //       alert("Login Fail");
-  //     }
-  //   });
-  // }
+  const handleCreateAccount = async (event) => {
+    let validation;
+    event.preventDefault();
+    let dataObj = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      dob: dob,
+      address1: address1,
+      address2: address2,
+      city: city,
+      country: selectedCountry,
+      password: password,
+    };
+    dispatch(toggleLoading());
+
+    try {
+      await dispatch(signup(dataObj.email, dataObj.password));
+      console.log(authObj);
+      if (authObj.status === "succeeded") {
+        navigate("/Dashboard");
+      } else {
+        alert(authObj.error);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+    dispatch(toggleLoading());
+
+    // signUpWithEmailPassword(props.email, password).then((response) => {
+    //   validation = response;
+    //   console.log(response);
+    //   if (validation.uid) {
+    //     props.setPanel(4);
+    //     localStorage.setItem("accessToken", validation.accessToken);
+    //     localStorage.setItem("uid", validation.uid);
+    //   } else {
+    //     alert("Login Fail");
+    //   }
+    // });
+  };
 
   function comparePassword(event) {
     setConfirmPassword(event.target.value);
@@ -87,15 +125,29 @@ function SignInPage() {
     <Row className="signin-cont mx-3 my-2">
       <Col className="signin-panel p-md-4" xl={6} md={5} sm={6} xs={10}>
         <h4 className="text-center py-3 mt-4">Expenses Tracker</h4>
-        <Form>
+        <Form onSubmit={handleCreateAccount}>
           <Form.Group className="row">
             <Form.Group className="col-xl-6 mb-3" controlId="formFirstName">
               <Form.Label>First Name</Form.Label>
-              <Form.Control type="text" placeholder="Enter first name" />
+              <Form.Control
+                type="text"
+                placeholder="Enter first name"
+                onChange={(e) => {
+                  setFirstName(e.target.value);
+                }}
+                required
+              />
             </Form.Group>
             <Form.Group className="col-xl-6 mb-3" controlId="formLastName">
               <Form.Label>Last Name</Form.Label>
-              <Form.Control type="text" placeholder="Enter last name" />
+              <Form.Control
+                type="text"
+                placeholder="Enter last name"
+                onChange={(e) => {
+                  setLastName(e.target.value);
+                }}
+                required
+              />
             </Form.Group>
           </Form.Group>
 
@@ -111,29 +163,58 @@ function SignInPage() {
                 placeholderText="Select date of birth"
                 dateFormat="MM/dd/yyyy"
                 className="form-control"
+                required
               />
             </Form.Group>
             <Form.Group className="col-xl-6 mb-3" controlId="formEmail">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                required
+              />
             </Form.Group>
           </Form.Group>
 
           <Form.Group className="row">
             <Form.Group className="col-xl-6 mb-3" controlId="formAddress1">
               <Form.Label>Address Line 1</Form.Label>
-              <Form.Control type="text" placeholder="Enter address line 1" />
+              <Form.Control
+                type="text"
+                placeholder="Enter address line 1"
+                onChange={(e) => {
+                  setAddress1(e.target.value);
+                }}
+                required
+              />
             </Form.Group>
             <Form.Group className="col-xl-6 mb-3" controlId="formAddress2">
               <Form.Label>Address Line 2</Form.Label>
-              <Form.Control type="text" placeholder="Enter address line 2" />
+              <Form.Control
+                type="text"
+                placeholder="Enter address line 2"
+                onChange={(e) => {
+                  setAddress2(e.target.value);
+                }}
+                required
+              />
             </Form.Group>
           </Form.Group>
 
           <Form.Group className="row">
             <Form.Group className="col-xl-6 mb-3" controlId="formCity">
               <Form.Label>City</Form.Label>
-              <Form.Control type="text" placeholder="Enter city" />
+              <Form.Control
+                type="text"
+                placeholder="Enter city"
+                onChange={(e) => {
+                  setCity(e.target.value);
+                }}
+                required
+              />
             </Form.Group>
             <Form.Group className="col-xl-6 mb-3" controlId="formAddress2">
               <Form.Label>Country</Form.Label>
@@ -144,6 +225,7 @@ function SignInPage() {
                 }
                 menuVariant="dark"
                 drop="up"
+                required
               >
                 {countryList.map((country) => (
                   <Dropdown.Item
@@ -167,6 +249,7 @@ function SignInPage() {
                 placeholder="Enter your password"
                 value={password}
                 onChange={handlePasswordChange}
+                required
               />
               <div className="pw-labels py-1">
                 {showLengthMessage && (
@@ -238,12 +321,12 @@ function SignInPage() {
                 ) : null}
               </div>
             </Form.Group>
-            <Form.Group className="text-center" controlId="loginBtn">
+            <Form.Group className="text-center" controlId="signupBtn">
               <ProjectButton
-                label="Sign in"
-                backgroundColor="#1abda9"
+                label="Sign Up"
+                backgroundColor="#0ad357"
                 size="small"
-                // btnOnClick={() => navigate("/login")}
+                type="submit"
               />
             </Form.Group>
             <Form.Group
@@ -261,4 +344,4 @@ function SignInPage() {
   );
 }
 
-export default SignInPage;
+export default SignUpPage;

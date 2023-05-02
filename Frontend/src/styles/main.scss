@@ -40,7 +40,7 @@ body {
 @import "./../components/common/Footer/footer";
 @import "./../containers/HomePage/homepage";
 @import "./../containers/LoginPage/login";
-@import "./../containers/SignInPage/signin";
+@import "./../containers/SignUpPage/signup";
 @import "./../containers/DashboardPage/dashboard";
 @import "./../components/Navbar/navbar";
 @import "./../components/ExpenseCard/expensecard";
@@ -52,3 +52,5 @@ body {
 @import "./../components/Profile/profile";
 @import "./../containers/EditProfilePage/editprofilepage";
 @import "./../components/ProfilePictureUpload/profilepictureupload";
+@import "./../components/common/LoadingScreen/loadingscreen";
+@import "./../components/common/InnerLoading/innerloading";

@@ -5,40 +5,57 @@ import { Row, Col, Form, Dropdown, DropdownButton } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { createExpense } from "../../features/expenses/expensesSlice";
+import { useDispatch } from "react-redux";
+import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
 
 function AddExpensePage() {
   const navigate = useNavigate();
-  const [dob, setDob] = useState("");
-  const [typeList, seTypeList] = useState([
-    "Transport",
-    "Food",
-    "Rent",
-    "Entrtainment",
-    "Utilities",
-  ]);
+  const dispatch = useDispatch();
+  const [name, setName] = useState();
+  const [exDate, setExDate] = useState();
+  const [amount, setAmount] = useState();
   const [selectedType, setSelectedType] = useState(null);
-  const [Description, setDescription] = useState();
+  const [description, setDescription] = useState();
 
-  const handleDateChange = (value, formattedValue) => {
-    setDob(formattedValue);
+  const typeList = ["Transport", "Food", "Rent", "Entrtainment", "Utilities"];
+
+  const handleDateChange = (value) => {
+    setExDate(value);
   };
 
+  function handleCreateExpense(e) {
+    e.preventDefault();
+    dispatch(toggleLoading());
+    const dataObj = {
+      userId: "FUq1nroFcngxWzsLoivT",
+      name: name,
+      date: exDate,
+      amount: amount,
+      type: selectedType,
+      description: description,
+    };
+    dispatch(createExpense(dataObj));
+    dispatch(toggleLoading());
+    navigate("/Dashboard");
+  }
   return (
     <Row className="create-expense-cont mx-3 my-2">
       <Col className="create-expense  p-md-4" xl={6} md={5} sm={6} xs={10}>
         <h4 className="text-center py-3 mt-4">Add Expense Item</h4>
-        <Form>
+        <Form onSubmit={handleCreateExpense}>
           <Form.Group className="row">
             <Form.Group className="col-xl-6 mb-3" controlId="forExpenseName">
               <Form.Label>Expense Name</Form.Label>
               <Form.Control
                 type="text"
-                maxLength="10"
+                maxLength="15"
                 placeholder="Enter Expense name"
                 onChange={(event) => {
-                  const remainingChars = 10 - event.target.value.length;
+                  const remainingChars = 15 - event.target.value.length;
                   const label = document.getElementById("expenseNameLabel");
                   label.textContent = `Remaining characters: ${remainingChars}`;
+                  setName(event.target.value);
                 }}
               />
               <Form.Text id="expenseNameLabel" muted>
@@ -48,12 +65,12 @@ function AddExpensePage() {
             <Form.Group className="col-xl-6 mb-3" controlId="formDate">
               <Form.Label>Date</Form.Label>
               <DatePicker
-                selected={dob}
+                selected={exDate}
                 onChange={handleDateChange}
                 showMonthDropdown
                 showYearDropdown
                 dropdownMode="select"
-                placeholderText="Select date of birth"
+                placeholderText="Select date of expense"
                 dateFormat="MM/dd/yyyy"
                 className="form-control"
               />
@@ -63,7 +80,14 @@ function AddExpensePage() {
           <Form.Group className="row">
             <Form.Group className="col-xl-6 mb-3" controlId="formAmount">
               <Form.Label>Amount</Form.Label>
-              <Form.Control type="number" placeholder="Enter amount" />
+              <Form.Control
+                type="number"
+                placeholder="Enter amount"
+                value={amount}
+                onChange={(e) => {
+                  e.target.value < 0 ? setAmount(0) : setAmount(e.target.value);
+                }}
+              />
             </Form.Group>
             <Form.Group className="col-xl-6 mb-3" controlId="formType">
               <Form.Label>Expense Type</Form.Label>
@@ -94,8 +118,9 @@ function AddExpensePage() {
                   type="textarea"
                   id="whatsappNumber"
                   placeholder="Description"
-                  value={Description}
+                  value={description}
                   className="login-input-space  bg-variant-dark"
+                  onChange={(e) => setDescription(e.target.value)}
                   required
                 />
               </Form.Group>
@@ -105,7 +130,7 @@ function AddExpensePage() {
                 label="Add Expense"
                 backgroundColor="#0ad357"
                 size="small"
-                // btnOnClick={() => navigate("/login")}
+                type="submit"
               />
             </Form.Group>
           </Form.Group>

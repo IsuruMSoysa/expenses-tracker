@@ -7,20 +7,26 @@ function Navbar() {
   const location = useLocation();
   const path = location.pathname.substring(1);
 
-  const navLabel = ["Dashboard", "Archived", "Account", "Logout"].map((e) => {
-    return path === e ? (
+  const navLabel = ["Dashboard", "Archived", "Account"].map((e) => {
+    console.log(path);
+    return path.toLocaleLowerCase() === e.toLocaleLowerCase() ? (
       <Col className="nav-menuitem-selected py-1">{e}</Col>
     ) : (
       <Col
         className="nav-menuitem py-1"
         onClick={() => {
-          navigate("/" + e);
+          navigate("/" + e.toLocaleLowerCase());
         }}
       >
         {e}
       </Col>
     );
   });
+
+  function handleLogOut() {
+    localStorage.removeItem("uid");
+    navigate("/login");
+  }
   return (
     <Row className="navbar-cont text-center mx-2">
       <Col className="logo-section text-start ps-4">Expenses Tracker</Col>
@@ -28,6 +34,9 @@ function Navbar() {
         <Row>
           <Col lg={1}></Col>
           {navLabel}
+          <Col className="nav-menuitem py-1" onClick={handleLogOut}>
+            Logout
+          </Col>
         </Row>
       </Col>
     </Row>

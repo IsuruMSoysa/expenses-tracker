@@ -16,13 +16,13 @@ function HomePage() {
         </p>
         <ProjectButton
           label="Log in"
-          backgroundColor="#1abda9"
+          backgroundColor="#0ad357"
           size="small"
           btnOnClick={() => navigate("/login")}
         />
         <ProjectButton
-          label="Sign in"
-          backgroundColor="#1abda9"
+          label="Sign up"
+          backgroundColor="#0ad357"
           size="small"
           btnOnClick={() => navigate("/login")}
         />

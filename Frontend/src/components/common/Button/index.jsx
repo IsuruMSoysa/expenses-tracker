@@ -6,6 +6,7 @@ const ProjectButton = ({
   size,
   color,
   btnOnClick,
+  type,
 }) => {
   const styles = {
     backgroundColor: backgroundColor || "#1abda9",
@@ -26,7 +27,7 @@ const ProjectButton = ({
   }
 
   return (
-    <button onClick={btnOnClick} style={styles}>
+    <button onClick={btnOnClick} style={styles} type={type}>
       {label || "Button"}
     </button>
   );

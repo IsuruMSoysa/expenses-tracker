@@ -13,5 +13,9 @@
   }
   .exp-descrip {
     font-size: 0.9em;
+    background-color: $secondary-color;
+    border-radius: 1em;
+    display: grid;
+    align-items: center;
   }
 }

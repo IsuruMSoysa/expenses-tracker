@@ -64,7 +64,10 @@ function ExpenseCard(props) {
           </Col>
           <Col className="expand-icon text-end">
             <span
-              onClick={() => navigate("/ViewItem")}
+              onClick={(e) => {
+                navigate(`/ViewItem/${props.id}`);
+                console.log(props.id);
+              }}
               className="material-symbols-outlined p-1"
             >
               open_in_new

@@ -21,7 +21,7 @@ const data = {
 function CategoryData() {
   return (
     <Row>
-      <Col>
+      <Col className="p-3">
         <Pie data={data} />
       </Col>
     </Row>
