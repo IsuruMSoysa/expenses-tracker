@@ -8,25 +8,25 @@ import { collection, getDocs } from "@firebase/firestore";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchExpenses } from "./../../features/expenses/expensesSlice";
+import { useParams } from "react-router-dom";
+import { setExpenses } from "../../features/cardDetails/cardDetailsSlice";
 
 function DashboardPage() {
   const dispatch = useDispatch();
+  let { id } = useParams();
   const expensesArr = useSelector((state) => state.expenses);
-  // const usersCollectionRef = collection(db, "expense");
-  // const [expenses, setExpenses] = useState([]);
-
-  // useEffect(() => {
-  //   const getExpenses = async () => {
-  //     const data = await getDocs(usersCollectionRef);
-  //     const minData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-  //     setExpenses(minData);
-  //   };
-  //   getExpenses();
-  // }, []);
+  const cards = useSelector((state) => state.cards);
+  const user = useSelector((state) => state.auth);
+  const [userExpenseArray, setUserExpenseArray] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchExpenses());
+    dispatch(fetchExpenses(id));
+    dispatch(setExpenses(expensesArr));
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(setExpenses(expensesArr.expenses));
+  }, [expensesArr]);
 
   return (
     <>
@@ -47,17 +47,17 @@ function DashboardPage() {
                   <Row>
                     <Col className="total-card">
                       <label>Total Earnings</label>
-                      <h4>Rs.100000</h4>
+                      <h4>Rs. {cards.totalEarnings}</h4>
                     </Col>
                     <Col className="total-card">
                       <label>Total Expenses</label>
-                      <h4>Rs.100000</h4>
+                      <h4>Rs. {cards.totalExpenses}</h4>
                     </Col>
                   </Row>
                   <Row>
                     <Col className="total-card text-center">
                       <label>Total Leftover</label>
-                      <h2>Rs.100000</h2>
+                      <h2>Rs. {cards.totalEarnings - cards.totalExpenses}</h2>
                     </Col>
                   </Row>
                 </Col>

@@ -32,7 +32,7 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/dashboard",
+    path: "/dashboard/:id",
     element: (
       <PrivateRoute>
         <Dashboard />
@@ -103,18 +103,7 @@ const router = createBrowserRouter([
 
 function App() {
   const { showLoading } = useSelector((state) => state.loading);
-  // const [users, setUsers] = useState([]);
-  // const usersCollectionRef = collection(db, "users");
 
-  // useEffect(() => {
-  //   const getUsers = async () => {
-  //     const data = await getDocs(usersCollectionRef);
-  //     const minData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-  //     console.log("minData", minData);
-  //   };
-
-  //   getUsers();
-  // }, []);
   return (
     <>
       <div className="main-app-container">

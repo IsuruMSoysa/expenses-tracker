@@ -66,7 +66,6 @@ function ExpenseCard(props) {
             <span
               onClick={(e) => {
                 navigate(`/ViewItem/${props.id}`);
-                console.log(props.id);
               }}
               className="material-symbols-outlined p-1"
             >

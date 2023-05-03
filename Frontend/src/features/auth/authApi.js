@@ -30,7 +30,6 @@ export const initAuth = () => (dispatch) => {
 export const authApi = {
   async login(email, password) {
     const { user } = await signInWithEmailAndPassword(auth, email, password);
-    console.log(user, password, email);
     return user;
   },
   async signup(email, password) {

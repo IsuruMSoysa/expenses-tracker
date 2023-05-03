@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getExpenses, addExpenses, updateExpenses } from "./expensesApi";
-// addDoc, deleteDoc, updateDoc
 
 const initialState = {
   expenses: null,
@@ -10,8 +9,10 @@ const initialState = {
 
 export const fetchExpenses = createAsyncThunk(
   "expenses/fetchExpenses",
-  async () => {
-    const data = await getExpenses();
+  async (userId) => {
+    const data = await getExpenses(userId);
+
+    //const userExpenses = filterExpenseForUser(data, selectUserId);
     return data;
   }
 );
@@ -27,7 +28,6 @@ export const createExpense = createAsyncThunk(
 export const updateExpense = createAsyncThunk(
   "expenses/updateExpense",
   async (id, expense) => {
-    console.log("expDoc2", expense);
     const docRef = await updateExpenses(id, expense);
     return { ...expense, id: docRef.id };
   }

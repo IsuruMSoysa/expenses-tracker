@@ -5,22 +5,27 @@ import {
   addDoc,
   updateDoc,
   doc,
+  query,
+  where,
 } from "@firebase/firestore";
-const usersCollectionRef = collection(db, "expense");
+const expensesCollectionRef = collection(db, "expense");
 
-export const getExpenses = async () => {
-  const data = await getDocs(usersCollectionRef);
-  const minData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+export const getExpenses = async (userId) => {
+  const q = query(expensesCollectionRef, where("userId", "==", userId));
+  const querySnapshot = await getDocs(q);
+  const minData = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
   return minData;
 };
 
 export const addExpenses = async (expenseObj) => {
-  await addDoc(usersCollectionRef, expenseObj);
+  await addDoc(expensesCollectionRef, expenseObj);
 };
 
 export const updateExpenses = async (id, expense) => {
   const expDoc = doc(db, "expense", id);
-  console.log("expDoc", expense);
   await updateDoc(expDoc, expense);
 };
 

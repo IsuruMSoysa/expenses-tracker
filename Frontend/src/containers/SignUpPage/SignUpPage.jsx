@@ -90,14 +90,11 @@ function SignUpPage() {
 
     try {
       const firebaseUser = await dispatch(signup(email, password));
-
-      console.log("firebaseUser", firebaseUser);
       if (firebaseUser.success) {
         dataObj.authId = firebaseUser.uid;
         let createdUser = dispatch(createUser(dataObj));
         dispatch(loginSuccess(createdUser.arg));
-        console.log(createdUser);
-        navigate("/Dashboard");
+        navigate(`/dashboard/${firebaseUser.uid}`);
       } else {
         alert(firebaseUser.error);
       }

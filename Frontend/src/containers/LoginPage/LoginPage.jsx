@@ -22,10 +22,9 @@ function LoginPage() {
     e.preventDefault();
     try {
       let validate = await dispatch(login(email, password));
-      // console.log(authObj);
       if (validate.success) {
         dispatch(toggleLoading());
-        navigate("/Dashboard");
+        navigate(`/Dashboard/${validate.uid}`);
       } else {
         dispatch(toggleLoading());
         alert(validate.message);
