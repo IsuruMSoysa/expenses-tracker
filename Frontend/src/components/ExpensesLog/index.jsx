@@ -64,31 +64,21 @@ function ExpensesLog(props) {
     });
 
   const loadingData = (
-    <Row>
-      <Col className="inner-loading">
-        <ReactLoading
-          type="cylon"
-          color="#ffffff"
-          height={"55%"}
-          width={"55%"}
-        />
-      </Col>
-    </Row>
+    <Col className="inner-loading">
+      <ReactLoading type="cylon" color="#ffffff" height={"55%"} width={"55%"} />
+    </Col>
   );
 
   return (
     <Row>
       <Col>
         <Row>
-          <Col className="expense-log-title text-center px-lg-4 py-2">
+          <Col className="expense-log-title text-center px-lg-4 py-3">
             <h4>Expenses Log</h4>
           </Col>
         </Row>
         <Row className="expense-cards-cont">
-          {props.expenses
-            ? mapExpense
-            : // <h4 style={{ width: "100%" }}>No data available</h4>
-              loadingData}
+          {props.expenses ? mapExpense : loadingData}
         </Row>
       </Col>
     </Row>

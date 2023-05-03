@@ -1,16 +1,18 @@
 .dashboard-cont {
-  height: 96vh;
+  min-height: 96vh;
+
   .dash-nav-cont {
-    height: 8.5vh;
+    height: 8vh;
   }
 
   .dash-content {
-    height: 87vh;
+    min-height: 87vh;
+    overflow-y: auto;
     .dash-side-section {
       // border-right: 2px solid $secondary-color;
       // background-color: $secondary-color;
       border-radius: 1em;
-      margin-left: 1.5vw;
+      // margin-left: 1.5vw;
 
       .dash-total-section {
         height: 40vh;
@@ -47,7 +49,7 @@
 }
 
 .add-btn-section {
-  position: absolute;
+  position: fixed;
   bottom: 6vh;
   right: 10vh;
 }

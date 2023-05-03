@@ -10,7 +10,7 @@ body {
   margin: 0;
 
   .main-app-container {
-    height: 96vh;
+    min-height: 96vh;
     overflow: hidden;
   }
 
@@ -54,3 +54,4 @@ body {
 @import "./../components/ProfilePictureUpload/profilepictureupload";
 @import "./../components/common/LoadingScreen/loadingscreen";
 @import "./../components/common/InnerLoading/innerloading";
+@import "./../components/CategoryData/categorydata";

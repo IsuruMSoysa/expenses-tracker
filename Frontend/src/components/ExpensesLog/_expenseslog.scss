@@ -3,10 +3,12 @@
 }
 .expense-cards-cont {
   overflow-y: auto;
-  height: 80vh;
+  min-height: 140px;
   .card-cube {
+    height: 100px;
     display: grid;
     justify-items: center;
+    align-items: center;
   }
 }
 
