@@ -8,10 +8,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import { createExpense } from "../../features/expenses/expensesSlice";
 import { useDispatch } from "react-redux";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
+import { useSelector } from "react-redux";
 
 function AddExpensePage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.auth);
   const [name, setName] = useState();
   const [exDate, setExDate] = useState();
   const [amount, setAmount] = useState();
@@ -28,7 +30,7 @@ function AddExpensePage() {
     e.preventDefault();
     dispatch(toggleLoading());
     const dataObj = {
-      userId: "FUq1nroFcngxWzsLoivT",
+      userId: currentUser.user.uid,
       name: name,
       date: exDate,
       amount: amount,

@@ -32,7 +32,7 @@ function Navbar() {
   });
 
   function handleLogOut() {
-    localStorage.removeItem("uid");
+    localStorage.removeItem("at");
     navigate("/login");
   }
   return (

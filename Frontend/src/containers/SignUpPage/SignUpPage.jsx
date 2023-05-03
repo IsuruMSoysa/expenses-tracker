@@ -7,7 +7,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
-import { signup } from "../../features/auth/authSlice";
+import {
+  signup,
+  createUser,
+  loginSuccess,
+} from "../../features/auth/authSlice";
 
 const countriesAPI = "https://restcountries.com/v3.1/all";
 
@@ -80,16 +84,22 @@ function SignUpPage() {
       city: city,
       country: selectedCountry,
       password: password,
+      authId: null,
     };
     dispatch(toggleLoading());
 
     try {
-      await dispatch(signup(dataObj.email, dataObj.password));
-      console.log(authObj);
-      if (authObj.status === "succeeded") {
+      const firebaseUser = await dispatch(signup(email, password));
+
+      console.log("firebaseUser", firebaseUser);
+      if (firebaseUser.success) {
+        dataObj.authId = firebaseUser.uid;
+        let createdUser = dispatch(createUser(dataObj));
+        dispatch(loginSuccess(createdUser.arg));
+        console.log(createdUser);
         navigate("/Dashboard");
       } else {
-        alert(authObj.error);
+        alert(firebaseUser.error);
       }
     } catch (error) {
       console.log(error.message);

@@ -10,6 +10,7 @@ function ExpensesLog(props) {
 
   useEffect(() => {
     setExpensesArray(props.expenses);
+    console.log(props.expenses);
   }, [props.expenses]);
 
   const cards = [
@@ -63,6 +64,37 @@ function ExpensesLog(props) {
       );
     });
 
+  // function mapExpense(){
+  //   if(expensesArray){
+  //     if(expensesArray.length == 0){
+  //       return  (
+  //   <h4 style={{ color: "#ffffff" }}>No expenses added</h4>
+  // )
+  //     }
+  //     else{
+  //       (
+  //   expensesArray.map((e) => {
+  //     return (
+  //       // eslint-disable-next-line react/jsx-key
+  //       <Col className="card-cube p-0" lg={6}>
+  //         <ExpenseCard
+  //           title={e.name}
+  //           date={e.date.toDate().toLocaleDateString()}
+  //           amount={e.amount}
+  //           type={e.type}
+  //           key={e.id}
+  //           id={e.id}
+  //         />
+  //       </Col>
+  //     );
+  //   })
+  // )
+  //     }
+  //   }else{
+  //     return loadingData
+  //   }
+  // }
+
   const loadingData = (
     <Col className="inner-loading">
       <ReactLoading type="cylon" color="#ffffff" height={"55%"} width={"55%"} />
@@ -79,6 +111,13 @@ function ExpensesLog(props) {
         </Row>
         <Row className="expense-cards-cont">
           {props.expenses ? mapExpense : loadingData}
+          {/* {props.expenses && expensesArray.length === 0 ? (
+            <i>
+              <label className="py-3" style={{ color: "#717171" }}>
+                No expenses added yet
+              </label>
+            </i>
+          ) : null} */}
         </Row>
       </Col>
     </Row>

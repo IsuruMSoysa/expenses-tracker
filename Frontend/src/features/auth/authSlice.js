@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { authApi } from "./authApi";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { authApi, addUser, getUser } from "./authApi";
 
 const initialState = {
   user: null,
@@ -40,7 +40,7 @@ export const login = (email, password) => async (dispatch) => {
     dispatch(loginStart());
     const user = await authApi.login(email, password);
     dispatch(loginSuccess(user));
-    localStorage.setItem("uid", user.accessToken);
+    localStorage.setItem("at", user.accessToken);
     return { success: true, message: "Login Success" };
   } catch (error) {
     dispatch(loginFailure(error.message));
@@ -68,12 +68,27 @@ export const signup = (email, password) => async (dispatch) => {
     dispatch(loginStart());
     const user = await authApi.signup(email, password);
     dispatch(loginSuccess(user));
-    console.log(user);
+    localStorage.setItem("at", user.accessToken);
+    return { success: true, uid: user.uid };
   } catch (error) {
     dispatch(loginFailure(error.message));
-    alert("error:", error);
+    return { success: true, error: error.message };
   }
 };
 // export const initAuth = initAuth();
+
+//fire store user creation
+export const fetchUser = createAsyncThunk("expenses/fetchUser", async () => {
+  const data = await getUser();
+  return data;
+});
+
+export const createUser = createAsyncThunk(
+  "expenses/createUser",
+  async (user) => {
+    const docRef = await addUser(user);
+    return { ...user, id: docRef.id };
+  }
+);
 
 export default authSlice.reducer;

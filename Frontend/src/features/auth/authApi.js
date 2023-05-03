@@ -4,6 +4,16 @@ import {
 } from "@firebase/auth";
 import { auth } from "../../firebase-config";
 import { loginSuccess, logout } from "./authSlice";
+import { db } from "../../firebase-config";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  doc,
+} from "@firebase/firestore";
+
+const usersCollectionRef = collection(db, "users");
 
 // Middleware for handling Firebase authentication
 export const initAuth = () => (dispatch) => {
@@ -34,4 +44,15 @@ export const authApi = {
   async logout() {
     await auth.signOut();
   },
+};
+
+//firestore user
+export const getUser = async () => {
+  const data = await getDocs(usersCollectionRef);
+  const minData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  return minData;
+};
+
+export const addUser = async (userObj) => {
+  await addDoc(usersCollectionRef, userObj);
 };
