@@ -3,14 +3,31 @@ import { Row, Col, Button } from "react-bootstrap";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 import ProjectButton from "../common/Button";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  list,
+} from "firebase/storage";
+import { v4 } from "uuid";
+import { storage } from "../../firebase-config";
+import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
+import { useDispatch } from "react-redux";
+import { updateAccountDetails } from "../../features/accountDetails/accountDetailsSlice";
 
 function ProfilePictureUpload() {
   const Navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { id } = useParams();
   const [file, setFile] = useState(null);
   const [crop, setCrop] = useState({ aspect: 1 / 1 });
   const [previewUrl, setPreviewUrl] = useState(null);
+  const [imageUploadedUrl, setImageUploadedUrl] = useState(null);
+
   const fileInputRef = useRef();
+  const imagesListRef = ref(storage, "images/");
 
   function handleFileChange(event) {
     setFile(event.target.files[0]);
@@ -49,12 +66,30 @@ function ProfilePictureUpload() {
     setPreviewUrl(croppedImageUrl);
   }
 
-  function handleUploadButtonClick() {
+  function handleSelectButtonClick() {
     fileInputRef.current.click();
   }
 
+  const handleUploadButtonClick = () => {
+    if (file == null) return;
+    dispatch(toggleLoading());
+    const imageRef = ref(storage, `images/${file.name + v4()}`);
+    uploadBytes(imageRef, file).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setImageUploadedUrl(url);
+        console.log("url", url);
+        const editObj = {
+          imageUrl: url,
+        };
+        dispatch(updateAccountDetails({ id, editObj }));
+        dispatch(toggleLoading());
+        Navigate(`/dashboard/${id}`);
+      });
+    });
+  };
+
   return (
-    <Row className="text-center">
+    <Row className="text-center profile-pic-update-cont">
       <Col>
         <h4 htmlFor="profile-picture-upload">Upload Profile Picture</h4>
         {previewUrl ? (
@@ -84,16 +119,16 @@ function ProfilePictureUpload() {
           </div>
         )}
         <ProjectButton
-          label="Choose File"
-          backgroundColor="#0ad357"
+          label={previewUrl ? "Change Image" : "Choose Image"}
+          backgroundColor="#ffffff"
           size="small"
-          btnOnClick={handleUploadButtonClick}
+          btnOnClick={handleSelectButtonClick}
         />
         <ProjectButton
           label="Save"
           backgroundColor="#0ad357"
           size="small"
-          //   btnOnClick={handleUploadButtonClick}
+          btnOnClick={handleUploadButtonClick}
         />
         <ProjectButton
           label="Cancel"

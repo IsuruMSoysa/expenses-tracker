@@ -85,6 +85,7 @@ function SignUpPage() {
       country: selectedCountry,
       password: password,
       authId: null,
+      imageUrl: null,
     };
     dispatch(toggleLoading());
 

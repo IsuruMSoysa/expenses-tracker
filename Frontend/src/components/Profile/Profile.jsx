@@ -31,8 +31,30 @@ function Profile() {
       <Col className="prof-details-crd-cont text-center py-3 px-4" xl={6}>
         <Row>
           <Col className="profile-pc-cont p-3">
-            <div className="profile-pic"></div>
-            <div className="profile-edit-btn">
+            {userObject.currentUserDetails ? (
+              userObject.currentUserDetails.imageUrl ? (
+                <div
+                  className="profile-pic"
+                  style={{
+                    backgroundImage: `url(${userObject.currentUserDetails.imageUrl})`,
+                  }}
+                ></div>
+              ) : (
+                <div className="profile-pic">
+                  <label>Upload Image</label>
+                </div>
+              )
+            ) : (
+              <div className="profile-pic">
+                <label>Upload Image</label>
+              </div>
+            )}
+            <div
+              className="profile-edit-btn"
+              onClick={() => {
+                navigate(`/uploadprofilepicture/${id}`);
+              }}
+            >
               <span className="material-symbols-outlined">edit</span>
             </div>
           </Col>
