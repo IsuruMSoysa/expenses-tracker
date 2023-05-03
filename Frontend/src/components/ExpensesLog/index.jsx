@@ -16,55 +16,24 @@ function ExpensesLog(props) {
     []
   );
 
-  const cards = [
-    {
-      amount: "100000",
-      title: "House Rent",
-      date: "2023.05.01",
-      type: "Transport",
-    },
-    {
-      amount: "100000",
-      title: "House Rent",
-      date: "2023.05.01",
-      type: "Food",
-    },
-    {
-      amount: "100000",
-      title: "House Rent",
-      date: "2023.05.01",
-      type: "Food",
-    },
-    {
-      amount: "100000",
-      title: "House Rent",
-      date: "2023.05.01",
-      type: "Food",
-    },
-    {
-      amount: "100000",
-      title: "House Rent",
-      date: "2023.05.01",
-      type: "Food",
-    },
-  ];
-
   const mapExpense =
     expensesArray &&
     expensesArray.map((e) => {
-      return (
-        // eslint-disable-next-line react/jsx-key
-        <Col className="card-cube p-0" lg={6}>
-          <ExpenseCard
-            title={e.name}
-            date={e.date.toDate().toLocaleDateString()}
-            amount={e.amount}
-            type={e.type}
-            key={e.id}
-            id={e.id}
-          />
-        </Col>
-      );
+      if (!e.isArchived) {
+        return (
+          // eslint-disable-next-line react/jsx-key
+          <Col className="card-cube p-0" lg={6}>
+            <ExpenseCard
+              title={e.name}
+              date={e.date.toDate().toLocaleDateString()}
+              amount={e.amount}
+              type={e.type}
+              key={e.id}
+              id={e.id}
+            />
+          </Col>
+        );
+      }
     });
 
   // function mapExpense(){

@@ -21,7 +21,7 @@ function AddExpensePage() {
   const [selectedType, setSelectedType] = useState(null);
   const [description, setDescription] = useState();
 
-  const typeList = ["Transport", "Food", "Rent", "Entrtainment", "Utilities"];
+  const typeList = ["Transport", "Food", "Rent", "Entertainment", "Utilities"];
 
   const handleDateChange = (value) => {
     setExDate(value);

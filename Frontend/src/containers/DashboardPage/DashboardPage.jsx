@@ -53,11 +53,11 @@ function DashboardPage() {
               <Row className="dash-total-section">
                 <Col>
                   <Row>
-                    <Col className="total-card">
+                    <Col className="total-card text-center">
                       <label>Total Earnings</label>
                       <h4>Rs. {cards.totalEarnings}</h4>
                     </Col>
-                    <Col className="total-card">
+                    <Col className="total-card text-center">
                       <label>Total Expenses</label>
                       <h4>Rs. {cards.totalExpenses}</h4>
                     </Col>
