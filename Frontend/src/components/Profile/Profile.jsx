@@ -31,7 +31,7 @@ function Profile() {
       <Col className="prof-details-crd-cont text-center py-3 px-4" xl={6}>
         <Row>
           <Col className="profile-pc-cont p-3">
-            <div className="profile-pic">i</div>
+            <div className="profile-pic"></div>
             <div className="profile-edit-btn">
               <span className="material-symbols-outlined">edit</span>
             </div>
@@ -66,7 +66,7 @@ function Profile() {
               {userObject.currentUserDetails
                 ? userObject.currentUserDetails.address1 +
                   ", " +
-                  userObject.currentUserDetails.address1 +
+                  userObject.currentUserDetails.address2 +
                   ", " +
                   userObject.currentUserDetails.city +
                   ", " +

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  totalEarnings: 0,
+  totalEarnings: 100000,
   totalExpenses: 0,
   categoryArray: [],
 };

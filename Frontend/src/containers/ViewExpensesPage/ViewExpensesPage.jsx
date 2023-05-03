@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import InnerLoading from "./../../components/common/InnerLoading";
 import { assignSelectedExpense } from "../../features/selectedExpense/selectedExpenseSlice";
-import { deleteExpense } from "../../features/expenses/expensesSlice";
+import {
+  deleteExpense,
+  updateExpense,
+} from "../../features/expenses/expensesSlice";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
 
 function ViewExpensesPage() {
@@ -34,6 +37,7 @@ function ViewExpensesPage() {
   }
   function handleDeleteItem(e) {
     e.preventDefault();
+    dispatch(toggleLoading());
     // dispatch(
     //   setAlert({
     //     message: "Something happened!",
@@ -43,6 +47,28 @@ function ViewExpensesPage() {
     // );
     dispatch(toggleLoading());
     dispatch(deleteExpense(itemid));
+    dispatch(toggleLoading());
+    navigate(`/dashboard/${id}`);
+  }
+
+  function handleArchiveItem(e) {
+    e.preventDefault();
+    dispatch(toggleLoading());
+    const editObj = {
+      isArchived: true,
+    };
+    dispatch(updateExpense({ itemid, editObj }));
+    dispatch(toggleLoading());
+    navigate(`/dashboard/${id}`);
+  }
+
+  function handleRestoreItem(e) {
+    e.preventDefault();
+    dispatch(toggleLoading());
+    const editObj = {
+      isArchived: false,
+    };
+    dispatch(updateExpense({ itemid, editObj }));
     dispatch(toggleLoading());
     navigate(`/dashboard/${id}`);
   }
@@ -100,12 +126,23 @@ function ViewExpensesPage() {
             />
           </Col>
           <Col className="">
-            <ProjectButton
-              label="Archive"
-              backgroundColor="#D5B0E2"
-              size="small"
-              // btnOnClick={() => navigate("/login")}
-            />
+            {expObj ? (
+              expObj.isArchived ? (
+                <ProjectButton
+                  label="Restore"
+                  backgroundColor="#00DEFF"
+                  size="small"
+                  btnOnClick={handleRestoreItem}
+                />
+              ) : (
+                <ProjectButton
+                  label="Archive"
+                  backgroundColor="#D5B0E2"
+                  size="small"
+                  btnOnClick={handleArchiveItem}
+                />
+              )
+            ) : null}
           </Col>
           <Col className="">
             <ProjectButton
