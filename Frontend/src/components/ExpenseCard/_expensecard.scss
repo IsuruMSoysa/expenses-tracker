@@ -35,3 +35,21 @@
     cursor: pointer;
   }
 }
+
+@media screen and (max-width: 1212px) {
+  .expense-card {
+    width: 380px;
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  .expense-card {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 437px) {
+  .expense-card {
+    width: 95vw;
+  }
+}

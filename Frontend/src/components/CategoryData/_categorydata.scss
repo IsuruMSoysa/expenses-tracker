@@ -1,0 +1,9 @@
+.chart-cont {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  canvas {
+    height: 46vh !important;
+    width: auto;
+  }
+}

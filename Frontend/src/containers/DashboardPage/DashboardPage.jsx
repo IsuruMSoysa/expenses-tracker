@@ -33,15 +33,15 @@ function DashboardPage() {
       <div className="add-btn-section">
         <AddButton />
       </div>
-      <Row className="dashboard-cont">
+      <Row className="dashboard-cont m-0 p-0">
         <Col>
           <Row className="dash-nav-cont">
-            <Col className="pt-2">
+            <Col className="pt-2 px-1">
               <Navbar />
             </Col>
           </Row>
           <Row className="dash-content">
-            <Col className="dash-side-section my-1" xl={3}>
+            <Col className="dash-side-section my-1 px-3" xl={3}>
               <Row className="dash-total-section">
                 <Col>
                   <Row>
