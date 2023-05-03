@@ -1,9 +1,30 @@
+/* eslint-disable react/prop-types */
 import { Row, Col, Button } from "react-bootstrap";
 import ProjectButton from "../../components/common/Button";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAccountDetails } from "../../features/accountDetails/accountDetailsSlice";
+import InnrerLoading from "../common/InnerLoading";
+import { calculateAge } from "../../utils/calculateAge";
 
 function Profile() {
   const navigate = useNavigate();
+  const userObject = useSelector((state) => state.accountDetails);
+  const [age, setAge] = useState(null);
+  const { id } = useParams();
+
+  useEffect(
+    () => console.log("hi", userObject.currentUserDetails),
+    [userObject]
+  );
+
+  useEffect(() => {
+    const dateOfBirth = userObject.currentUserDetails.dob.toDate();
+    const age = calculateAge(dateOfBirth);
+    setAge(age);
+  }, [userObject.currentUserDetails.dob]);
+
   return (
     <Row
       className="prof-det-pop-cont justify-item-center"
@@ -21,27 +42,53 @@ function Profile() {
         </Row>
         <Row>
           <Col className="prof-amount text-center">
-            <h2>Isuru M Soysa</h2>
+            <h2>
+              {userObject.currentUserDetails ? (
+                userObject.currentUserDetails.firstName +
+                " " +
+                userObject.currentUserDetails.lastName
+              ) : (
+                <InnrerLoading />
+              )}
+            </h2>
           </Col>
         </Row>
         <Row>
           <Col className="prof-title text-center">
-            <label>isurumsoysa@gmail.com</label>
+            <label>
+              {userObject.currentUserDetails
+                ? userObject.currentUserDetails.email
+                : null}
+            </label>
           </Col>
         </Row>
         <Row>
           <Col className="prof-amount text-center py-1">
-            <label>105/1, Delgahawatta,Melagama,Wadduwa</label>
+            <label>
+              {" "}
+              {userObject.currentUserDetails
+                ? userObject.currentUserDetails.address1 +
+                  ", " +
+                  userObject.currentUserDetails.address1 +
+                  ", " +
+                  userObject.currentUserDetails.city +
+                  ", " +
+                  userObject.currentUserDetails.country
+                : null}
+            </label>
           </Col>
         </Row>
         <Row className="py-2">
           <Col className="text-center">
-            <label>Age: 25</label>
+            <label>Age: {age} </label>
           </Col>
         </Row>
         <Row>
           <Col className="text-center">
-            <label>Date of Birth: 1998.09.13</label>
+            <label>
+              Date of Birth:{" "}
+              {userObject.currentUserDetails.dob.toDate().toLocaleDateString()}
+            </label>
           </Col>
         </Row>
         <Row className="py-3 text-center">
@@ -50,7 +97,7 @@ function Profile() {
               label="Edit Profile Details"
               backgroundColor="#0ad357"
               size="small"
-              btnOnClick={() => navigate("/EditProfile")}
+              btnOnClick={() => navigate(`/editprofile/${id}`)}
             />
           </Col>
         </Row>

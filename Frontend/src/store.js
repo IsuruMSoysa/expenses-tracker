@@ -5,6 +5,7 @@ import loadingReducer from "./features/loadingScreen/loadingSlice";
 import { expensesReducer } from "./features/expenses/expensesSlice";
 import assignSelectedExpenseReducer from "./features/selectedExpense/selectedExpenseSlice";
 import cardReducer from "./features/cardDetails/cardDetailsSlice";
+import accountDetailsSlice from "./features/accountDetails/accountDetailsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     expenses: expensesReducer,
     selectedExpense: assignSelectedExpenseReducer,
     cards: cardReducer,
+    accountDetails: accountDetailsSlice,
   },
 });
 

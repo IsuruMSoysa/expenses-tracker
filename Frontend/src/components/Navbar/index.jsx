@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Row, Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const user = useSelector((state) => state.auth);
   const path = location.pathname.substring(1);
   const [hambActive, setHambActive] = useState(false);
 
@@ -22,7 +24,7 @@ function Navbar() {
       <Col
         className="nav-menuitem py-1"
         onClick={() => {
-          navigate("/" + e.toLocaleLowerCase());
+          navigate("/" + e.toLocaleLowerCase() + `/${user.user.uid}`);
         }}
       >
         {e}
