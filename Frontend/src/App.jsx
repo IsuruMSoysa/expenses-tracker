@@ -44,7 +44,7 @@ const router = createBrowserRouter([
     element: <SignUp />,
   },
   {
-    path: "/account",
+    path: "/account/:id",
     element: (
       <PrivateRoute>
         <MyAccount />
@@ -84,7 +84,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/editprofile",
+    path: "/editprofile/:id",
     element: (
       <PrivateRoute>
         <EditProfilePage />

@@ -55,10 +55,10 @@ function EditProfilePage() {
                 className="form-control"
               />
             </Form.Group>
-            <Form.Group className="col-xl-6 mb-3" controlId="formEmail">
+            {/* <Form.Group className="col-xl-6 mb-3" controlId="formEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" placeholder="Enter email" />
-            </Form.Group>
+            </Form.Group> */}
           </Form.Group>
 
           <Form.Group className="row">
