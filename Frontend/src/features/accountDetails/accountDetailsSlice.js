@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getAccountDetails } from "./accountDetailsApi";
+import { getAccountDetails, editAccountDetails } from "./accountDetailsApi";
 
 const initialState = {
   currentUserDetails: null,
@@ -24,9 +24,10 @@ export const fetchAccountDetails = createAsyncThunk(
 
 export const updateAccountDetails = createAsyncThunk(
   "expenses/updateAccountDetails",
-  async (id, expense) => {
-    const docRef = await updateAccountDetails(id, expense);
-    return { ...expense, id: docRef.id };
+  async ({ id, editObj }) => {
+    const docRef = await editAccountDetails(id, editObj);
+    console.log("hello wrld", editObj, docRef);
+    return { ...editObj, id: docRef.id };
   }
 );
 
@@ -61,9 +62,9 @@ const accountDetailsSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(updateAccountDetails.fulfilled, (state, action) => {
-        const { id, expense } = action.payload;
+        const { id, editObj } = action.payload;
         const index = state.findIndex((item) => item.id === id);
-        state[index] = { ...state[index], ...expense };
+        state[index] = { ...state[index], ...editObj };
       });
   },
 });

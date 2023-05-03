@@ -5,11 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import InnerLoading from "./../../components/common/InnerLoading";
 import { assignSelectedExpense } from "../../features/selectedExpense/selectedExpenseSlice";
+import { deleteExpense } from "../../features/expenses/expensesSlice";
+import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
 
 function ViewExpensesPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  let { id } = useParams();
+  let { id, itemid } = useParams();
   const expensesArr = useSelector((state) => state.expenses);
   const [expObj, setExpObj] = useState(null);
 
@@ -23,14 +25,15 @@ function ViewExpensesPage() {
 
   function filterExpenseItem() {
     const filteredExpenses = expensesArr.expenses.filter(
-      (expense) => expense.id === id
+      (expense) => expense.id === itemid
     );
     if (filteredExpenses.length === 0) {
       return null;
     }
     return filteredExpenses[0];
   }
-  function handleDeleteItem() {
+  function handleDeleteItem(e) {
+    e.preventDefault();
     // dispatch(
     //   setAlert({
     //     message: "Something happened!",
@@ -38,6 +41,10 @@ function ViewExpensesPage() {
     //     type: "danger",
     //   })
     // );
+    dispatch(toggleLoading());
+    dispatch(deleteExpense(itemid));
+    dispatch(toggleLoading());
+    navigate(`/dashboard/${id}`);
   }
 
   const renderDetails = expObj && (
@@ -81,7 +88,7 @@ function ViewExpensesPage() {
               label="Edit"
               backgroundColor="#0ad357"
               size="small"
-              btnOnClick={() => navigate(`/EditItem/${id}`)}
+              btnOnClick={() => navigate(`/EditItem/${id}/${itemid}`)}
             />
           </Col>
           <Col className="">

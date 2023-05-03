@@ -19,14 +19,22 @@ function DashboardPage() {
   const user = useSelector((state) => state.auth);
   const [userExpenseArray, setUserExpenseArray] = useState([]);
 
-  useEffect(() => {
-    dispatch(fetchExpenses(id));
-    dispatch(setExpenses(expensesArr));
-  }, [dispatch]);
+  useEffect(
+    () => {
+      dispatch(fetchExpenses(id));
+      dispatch(setExpenses(expensesArr));
+    },
+    [dispatch],
+    []
+  );
 
-  useEffect(() => {
-    dispatch(setExpenses(expensesArr.expenses));
-  }, [expensesArr]);
+  useEffect(
+    () => {
+      dispatch(setExpenses(expensesArr.expenses));
+    },
+    [expensesArr],
+    []
+  );
 
   return (
     <>

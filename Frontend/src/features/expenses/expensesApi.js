@@ -4,6 +4,7 @@ import {
   getDocs,
   addDoc,
   updateDoc,
+  deleteDoc,
   doc,
   query,
   where,
@@ -24,11 +25,12 @@ export const addExpenses = async (expenseObj) => {
   await addDoc(expensesCollectionRef, expenseObj);
 };
 
-export const updateExpenses = async (id, expense) => {
+export const updateExpenses = async (id, editObj) => {
   const expDoc = doc(db, "expense", id);
-  await updateDoc(expDoc, expense);
+  await updateDoc(expDoc, editObj);
 };
 
-// export const deleteDoc = async (id) => {
-//   await firebase.firestore().collection('expenses').doc(id).delete();
-// };
+export const deleteExpenses = async (id) => {
+  const expDoc = doc(db, "expense", id);
+  await deleteDoc(expDoc);
+};

@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Row, Col } from "react-bootstrap";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 function ExpenseCard(props) {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [expenseType, setExpenseType] = useState("autorenew");
   const [cardBg, setCardBg] = useState("grey");
   const [cardBg2, setCardBg2] = useState("grey");
@@ -65,7 +66,7 @@ function ExpenseCard(props) {
           <Col className="expand-icon text-end">
             <span
               onClick={(e) => {
-                navigate(`/ViewItem/${props.id}`);
+                navigate(`/ViewItem/${id}/${props.id}`);
               }}
               className="material-symbols-outlined p-1"
             >

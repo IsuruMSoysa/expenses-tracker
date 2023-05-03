@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import ProjectButton from "../../components/common/Button";
 import { Row, Col, Form, Dropdown, DropdownButton } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { createExpense } from "../../features/expenses/expensesSlice";
@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 function AddExpensePage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { id } = useParams();
   const currentUser = useSelector((state) => state.auth);
   const [name, setName] = useState();
   const [exDate, setExDate] = useState();
@@ -36,10 +37,11 @@ function AddExpensePage() {
       amount: amount,
       type: selectedType,
       description: description,
+      isArchived: false,
     };
     dispatch(createExpense(dataObj));
     dispatch(toggleLoading());
-    navigate("/Dashboard");
+    navigate(`/dashboard/${id}`);
   }
   return (
     <Row className="create-expense-cont mx-3 my-2">
@@ -133,6 +135,13 @@ function AddExpensePage() {
                 backgroundColor="#0ad357"
                 size="small"
                 type="submit"
+              />
+              <ProjectButton
+                label="Back"
+                backgroundColor="#717171"
+                size="small"
+                color="#ffffff"
+                btnOnClick={() => navigate(-1)}
               />
             </Form.Group>
           </Form.Group>

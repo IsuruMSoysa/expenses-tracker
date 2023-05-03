@@ -8,22 +8,27 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
 import { updateExpense } from "../../features/expenses/expensesSlice";
+import { fetchAccountDetails } from "../../features/accountDetails/accountDetailsSlice";
 
 function EditExpensePage() {
   const dispatch = useDispatch();
-  let { id } = useParams();
+  let { id, itemid } = useParams();
   const selectedObj = useSelector((state) => state.selectedExpense.expenseItem);
   const navigate = useNavigate();
   const [name, setName] = useState(selectedObj.name);
   const [amount, setAmount] = useState(selectedObj.amount);
 
   const [date, setDate] = useState(selectedObj.date.toDate());
-  const typeList = ["Transport", "Food", "Rent", "Entrtainment", "Utilities"];
+  const typeList = ["Transport", "Food", "Rent", "Entertainment", "Utilities"];
   const [selectedType, setSelectedType] = useState(selectedObj.type);
   const [description, setDescription] = useState(selectedObj.description);
   const handleDateChange = (value) => {
     setDate(value);
   };
+
+  // useEffect(() => {
+  //   dispatch(fetchAccountDetails(id));
+  // }, []);
 
   function handleEditExpense(e) {
     e.preventDefault();
@@ -35,9 +40,9 @@ function EditExpensePage() {
       type: selectedType,
       description: description,
     };
-    dispatch(updateExpense(id, editObj));
+    dispatch(updateExpense({ itemid, editObj }));
     dispatch(toggleLoading());
-    navigate("/dashboard");
+    navigate(`/dashboard/${id}`);
   }
   return (
     <Row className="edit-expense-cont mx-3 my-2">

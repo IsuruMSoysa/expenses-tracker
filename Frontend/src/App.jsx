@@ -52,7 +52,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/archived",
+    path: "/archived/:id",
     element: (
       <PrivateRoute>
         <ArchivedPage />
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/additem",
+    path: "/additem/:id",
     element: (
       <PrivateRoute>
         <AddExpensePage />
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/viewitem/:id",
+    path: "/viewitem/:id/:itemid",
     element: (
       <PrivateRoute>
         <ViewExpensesPage />
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/edititem/:id",
+    path: "/edititem/:id/:itemid",
     element: (
       <PrivateRoute>
         <EditExpensePage />

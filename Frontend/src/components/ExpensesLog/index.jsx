@@ -8,9 +8,13 @@ import ReactLoading from "react-loading";
 function ExpensesLog(props) {
   const [expensesArray, setExpensesArray] = useState([]);
 
-  useEffect(() => {
-    setExpensesArray(props.expenses);
-  }, [props.expenses]);
+  useEffect(
+    () => {
+      setExpensesArray(props.expenses);
+    },
+    [props.expenses],
+    []
+  );
 
   const cards = [
     {
