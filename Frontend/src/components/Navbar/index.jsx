@@ -10,7 +10,6 @@ function Navbar() {
   const [hambActive, setHambActive] = useState(false);
 
   const navLabel = ["Dashboard", "Archived", "Account", "Logout"].map((e) => {
-    console.log(path);
     return path.toLocaleLowerCase() === e.toLocaleLowerCase() ? (
       <Col className="nav-menuitem-selected  px-1">
         <label>{e}</label>

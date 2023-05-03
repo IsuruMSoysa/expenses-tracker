@@ -4,6 +4,7 @@ import { initAuth } from "./features/auth/authApi";
 import loadingReducer from "./features/loadingScreen/loadingSlice";
 import { expensesReducer } from "./features/expenses/expensesSlice";
 import assignSelectedExpenseReducer from "./features/selectedExpense/selectedExpenseSlice";
+import cardReducer from "./features/cardDetails/cardDetailsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     loading: loadingReducer,
     expenses: expensesReducer,
     selectedExpense: assignSelectedExpenseReducer,
+    cards: cardReducer,
   },
 });
 

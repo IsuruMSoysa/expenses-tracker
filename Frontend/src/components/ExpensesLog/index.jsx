@@ -10,7 +10,6 @@ function ExpensesLog(props) {
 
   useEffect(() => {
     setExpensesArray(props.expenses);
-    console.log(props.expenses);
   }, [props.expenses]);
 
   const cards = [

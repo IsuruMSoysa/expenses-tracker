@@ -41,7 +41,7 @@ export const login = (email, password) => async (dispatch) => {
     const user = await authApi.login(email, password);
     dispatch(loginSuccess(user));
     localStorage.setItem("at", user.accessToken);
-    return { success: true, message: "Login Success" };
+    return { success: true, message: "Login Success", uid: user.uid };
   } catch (error) {
     dispatch(loginFailure(error.message));
     // alert("error:", error);
@@ -92,3 +92,5 @@ export const createUser = createAsyncThunk(
 );
 
 export default authSlice.reducer;
+
+export const selectUser = (state) => state.auth.user;
