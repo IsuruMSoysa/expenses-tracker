@@ -17,7 +17,6 @@ export const getAccountDetails = async (userId) => {
     ...doc.data(),
     id: doc.id,
   }));
-  console.log("bro", minData[0]);
   return minData[0];
 };
 
@@ -25,9 +24,13 @@ export const getAccountDetails = async (userId) => {
 //   await addDoc(usersCollectionRef, expenseObj);
 // };
 
-export const updateExpenses = async (id, expense) => {
-  const expDoc = doc(db, "expense", id);
-  await updateDoc(expDoc, expense);
+export const editAccountDetails = async (id, editObj) => {
+  const q = query(usersCollectionRef, where("authId", "==", id));
+  const querySnapshot = await getDocs(q);
+
+  const expDoc = doc(db, "users", querySnapshot.docs[0].id);
+  console.log("higuys", id, editObj);
+  await updateDoc(expDoc, editObj);
 };
 
 // export const deleteDoc = async (id) => {

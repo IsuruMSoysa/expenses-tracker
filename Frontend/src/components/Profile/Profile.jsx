@@ -14,16 +14,13 @@ function Profile() {
   const [age, setAge] = useState(null);
   const { id } = useParams();
 
-  useEffect(
-    () => console.log("hi", userObject.currentUserDetails),
-    [userObject]
-  );
-
   useEffect(() => {
-    const dateOfBirth = userObject.currentUserDetails.dob.toDate();
-    const age = calculateAge(dateOfBirth);
-    setAge(age);
-  }, [userObject.currentUserDetails.dob]);
+    if (userObject.currentUserDetails) {
+      const dateOfBirth = userObject.currentUserDetails.dob.toDate();
+      const age = calculateAge(dateOfBirth);
+      setAge(age);
+    }
+  }, [userObject.currentUserDetails]);
 
   return (
     <Row
@@ -87,7 +84,11 @@ function Profile() {
           <Col className="text-center">
             <label>
               Date of Birth:{" "}
-              {userObject.currentUserDetails.dob.toDate().toLocaleDateString()}
+              {userObject.currentUserDetails
+                ? userObject.currentUserDetails.dob
+                    .toDate()
+                    .toLocaleDateString()
+                : null}
             </label>
           </Col>
         </Row>

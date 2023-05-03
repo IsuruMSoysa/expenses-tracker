@@ -1,5 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getExpenses, addExpenses, updateExpenses } from "./expensesApi";
+import {
+  getExpenses,
+  addExpenses,
+  updateExpenses,
+  deleteExpenses,
+} from "./expensesApi";
 
 const initialState = {
   expenses: null,
@@ -27,19 +32,19 @@ export const createExpense = createAsyncThunk(
 
 export const updateExpense = createAsyncThunk(
   "expenses/updateExpense",
-  async (id, expense) => {
-    const docRef = await updateExpenses(id, expense);
-    return { ...expense, id: docRef.id };
+  async ({ itemid, editObj }) => {
+    const docRef = await updateExpenses(itemid, editObj);
+    return { ...editObj, id: docRef.id };
   }
 );
 
-// export const deleteExpense = createAsyncThunk(
-//   "expenses/deleteExpense",
-//   async (id) => {
-//     await deleteDoc(id);
-//     return id;
-//   }
-// );
+export const deleteExpense = createAsyncThunk(
+  "expenses/deleteExpense",
+  async (id) => {
+    await deleteExpenses(id);
+    return id;
+  }
+);
 
 const expensesSlice = createSlice({
   name: "expenses",
@@ -70,6 +75,9 @@ const expensesSlice = createSlice({
         const { id, expense } = action.payload;
         const index = state.findIndex((item) => item.id === id);
         state[index] = { ...state[index], ...expense };
+      })
+      .addCase(deleteExpense.fulfilled, (state, action) => {
+        return state.filter((item) => item.id !== action.payload);
       });
   },
 });
