@@ -92,7 +92,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/uploadprofilepicture",
+    path: "/uploadprofilepicture/:id",
     element: (
       <PrivateRoute>
         <ProfilePictureUpload />

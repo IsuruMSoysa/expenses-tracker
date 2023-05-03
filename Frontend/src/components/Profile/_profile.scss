@@ -21,15 +21,19 @@
       height: 25vh;
       display: grid;
       width: 25vh;
-      background-image: url("https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=");
+      // background-image: url("https://media.istockphoto.com/id/1309328823/photo/headshot-portrait-of-smiling-male-employee-in-office.jpg?b=1&s=612x612&w=0&k=20&c=eU56mZTN4ZXYDJ2SR2DFcQahxEnIl3CiqpP3SOQVbbI=");
       background-size: cover;
       background-position: center;
       background-color: $secondary-color;
       border-radius: 50%;
       border: 0.1em solid $primary-color;
       align-items: center;
-      font-size: 8vh;
-      font-weight: 600;
+
+      label {
+        color: #b8b8b8;
+        font-size: 1em;
+        font-weight: 600;
+      }
     }
     .profile-edit-btn {
       height: 5vh;
@@ -42,6 +46,7 @@
       align-items: center;
       margin-top: -5.5vh;
       margin-left: 15vh;
+      cursor: pointer;
     }
   }
 }
