@@ -1,0 +1,41 @@
+.edit-expense-cont {
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  .edit-expense {
+    color: $brand-font-color;
+    h4 {
+      font-weight: 700;
+      font-size: 1.7em;
+    }
+    label {
+      font-size: 0.8em;
+    }
+    input,
+    textarea {
+      background-color: transparent;
+      color: $primary-font-color;
+      border: solid 1px $primary-color;
+    }
+
+    .edit-account-label {
+      label {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+    .dropdown-toggle {
+      width: 100%;
+      background-color: $primary-color;
+      color: $background-color;
+    }
+    .dropdown-menu {
+      overflow-y: auto;
+    }
+  }
+}
+
+#expenseNameLabel {
+  font-size: 0.8em;
+}

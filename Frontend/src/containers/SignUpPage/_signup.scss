@@ -1,0 +1,65 @@
+.signin-cont {
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+
+  .signin-panel {
+    color: $brand-font-color;
+    h4 {
+      font-weight: 700;
+      font-size: 1.7em;
+    }
+    label {
+      font-size: 0.8em;
+    }
+    input {
+      background-color: transparent;
+      color: $primary-font-color;
+      border: solid 1px $primary-color;
+    }
+    .create-account-label {
+      label {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+
+    .dropdown-toggle {
+      width: 100%;
+      background-color: $primary-color;
+      color: $background-color;
+    }
+    .dropdown-menu {
+      height: 50vh;
+      overflow-y: auto;
+    }
+    .warn-label {
+      display: flex;
+    }
+    .pw-labels p {
+      color: $primary-error-color;
+      font-size: 0.75em;
+      padding: 0;
+      margin: 5px;
+    }
+
+    .pw-ok {
+      color: $primary-color !important;
+    }
+
+    .error-icon {
+      color: $primary-error-color;
+      font-size: 1em;
+      padding: 0;
+      margin: 5px;
+    }
+
+    .ok-icon {
+      color: $primary-color;
+      font-size: 1em;
+      padding: 0;
+      margin: 5px;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+.add-section {
+  display: grid;
+  justify-items: end;
+  .add-button {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    z-index: 100;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: $background-color;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.504),
+      0 6px 20px 0 rgba(0, 0, 0, 0.466);
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .add-button:hover {
+    background-color: $primary-color;
+    transition: 0.2s;
+    transform: scale(1.15);
+  }
+
+  .option-section {
+    // height: 10vh;
+    // width: 10vw;
+    background: rgba(11, 10, 10, 0.64);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12.8px);
+    -webkit-backdrop-filter: blur(12.8px);
+    border: 1px solid rgba(11, 10, 10, 0.01);
+    z-index: 100;
+    div {
+      cursor: pointer;
+    }
+    div:hover {
+      background-color: $primary-color !important;
+      border-radius: 1em;
+    }
+  }
+}

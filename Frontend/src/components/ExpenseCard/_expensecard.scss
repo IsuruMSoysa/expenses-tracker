@@ -1,0 +1,55 @@
+.expense-card {
+  height: 80px;
+  width: 400px;
+  border-radius: 1em;
+  color: $background-color;
+  align-items: center;
+  .card-2-cont {
+    align-items: end;
+    margin-top: -6px;
+  }
+  .icon-div {
+    background-color: $background-color;
+    height: 48px;
+    width: 48px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .expense-card-title {
+    font-weight: 600;
+    font-size: 1.1em;
+  }
+  .expense-card-date {
+    font-size: 0.8em;
+  }
+  .expense-card-amount {
+    font-size: 1.4em;
+    font-weight: 800;
+  }
+  .expand-icon span {
+    align-items: start;
+    font-size: 1em;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 1212px) {
+  .expense-card {
+    width: 380px;
+  }
+}
+
+@media screen and (max-width: 1190px) {
+  .expense-card {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 437px) {
+  .expense-card {
+    width: 95vw;
+  }
+}

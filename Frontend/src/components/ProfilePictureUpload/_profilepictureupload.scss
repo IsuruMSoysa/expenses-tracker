@@ -1,0 +1,14 @@
+.profile-pic-update-cont {
+  display: grid;
+  height: 92vh;
+  justify-content: center;
+  align-items: center;
+  .profile-preview {
+    display: grid;
+    justify-items: center;
+    width: 30vh;
+    height: 30vh;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+}

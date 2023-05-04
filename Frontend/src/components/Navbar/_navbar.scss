@@ -1,0 +1,118 @@
+.navbar-cont {
+  background-color: $secondary-color;
+  height: 7vh;
+  border-radius: 1em;
+  align-items: center;
+
+  .logo-section {
+    color: $primary-color;
+    font-weight: 700;
+    font-size: 1.6em;
+  }
+  .nav-menuitem {
+    cursor: pointer;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav-menuitem-selected {
+    background-color: $primary-color;
+    border-radius: 1em;
+    cursor: pointer;
+    font-weight: 600;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    label {
+      color: $background-color;
+    }
+  }
+  .hamb-btn {
+    display: none !important;
+    position: absolute;
+    z-index: 1;
+    top: 1.75vh;
+    right: 6vw;
+    width: 6vh;
+    height: 6vh;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: $primary-color;
+    cursor: pointer;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2),
+      0 3px 10px 0 rgba(0, 0, 0, 0.321);
+    transition: 0.3s;
+    color: $background-color;
+  }
+}
+.resp-nav {
+  width: 290px;
+  height: 40vh;
+  background: rgba(11, 10, 10, 0.64);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12.8px);
+  -webkit-backdrop-filter: blur(12.8px);
+  border: 1px solid rgba(11, 10, 10, 0.01);
+  position: absolute;
+  top: 8vh;
+  right: 6vw;
+  border-radius: 2em;
+  z-index: 100;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.321);
+  animation-name: navAnim;
+  animation-duration: 0.05s;
+  display: none;
+  justify-content: center;
+}
+
+@keyframes navAnim {
+  0% {
+    width: 0px;
+    height: 0vh;
+  }
+  25% {
+    width: 80px;
+    height: 5vh;
+  }
+  50% {
+    width: 150px;
+    height: 15vh;
+  }
+  75% {
+    width: 230px;
+    height: 25vh;
+  }
+  100% {
+    width: 290px;
+    height: 40vh;
+  }
+}
+
+@media screen and (max-width: 854px) {
+  .logo-section {
+    font-size: 1.3em !important;
+  }
+}
+// @media screen and (max-width: 500px) {
+//   .logo-section {
+//     font-size: 1.3em !important;
+//   }
+// }
+
+@media only screen and (max-width: 876px) {
+  .navbar-cont {
+    .hamb-btn {
+      display: grid !important;
+    }
+  }
+
+  .resp-nav {
+    display: grid;
+  }
+  .menu-items {
+    display: none !important;
+  }
+}

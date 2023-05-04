@@ -1,0 +1,19 @@
+.expense-log-title {
+  height: 7vh;
+}
+.expense-cards-cont {
+  overflow-y: auto;
+  min-height: 140px;
+  .card-cube {
+    height: 100px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+  }
+}
+
+.inner-loading {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
