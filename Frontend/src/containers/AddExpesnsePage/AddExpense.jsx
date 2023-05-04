@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ProjectButton from "../../components/common/Button";
 import { Row, Col, Form, Dropdown, DropdownButton } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";

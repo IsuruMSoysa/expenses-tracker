@@ -38,15 +38,16 @@ function EditProfilePage() {
   const [city, setCity] = useState(userObject.currentUserDetails.city);
 
   useEffect(() => {
-    // Fetch country list from API
     fetch(countriesAPI)
       .then((res) => res.json())
       .then((data) => {
         // Transform API response to an array of objects containing label and value properties
-        const transformedData = data.map((country) => ({
-          label: country.name.common,
-          value: country.alpha2Code,
-        }));
+        const transformedData = data
+          .map((country) => ({
+            label: country.name.common,
+            value: country.alpha2Code,
+          }))
+          .sort((a, b) => a.label.localeCompare(b.label)); // Sort by label in alphabetical order
         setCountryList(transformedData);
       })
       .catch((error) => console.log(error));
@@ -54,7 +55,6 @@ function EditProfilePage() {
 
   const handleDateChange = (value) => {
     setDob(value);
-    console.log(dob);
   };
 
   function handleEditProfileSubmit(e) {
@@ -126,10 +126,6 @@ function EditProfilePage() {
                 className="form-control"
               />
             </Form.Group>
-            {/* <Form.Group className="col-xl-6 mb-3" controlId="formEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
-            </Form.Group> */}
           </Form.Group>
 
           <Form.Group className="row">
@@ -191,7 +187,6 @@ function EditProfilePage() {
                 backgroundColor="#0ad357"
                 size="small"
                 type="submit"
-                // btnOnClick={() => navigate("/login")}
               />
               <ProjectButton
                 label="Cancel"

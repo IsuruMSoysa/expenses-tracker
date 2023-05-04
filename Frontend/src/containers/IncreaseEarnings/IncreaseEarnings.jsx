@@ -4,7 +4,6 @@ import ProjectButton from "../../components/common/Button";
 import { Row, Col, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
-import { createExpense } from "../../features/expenses/expensesSlice";
 import { useDispatch } from "react-redux";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
 import { useSelector } from "react-redux";
@@ -18,7 +17,6 @@ function IncreaseEarningsPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const currentUser = useSelector((state) => state.auth);
   const userDetails = useSelector((state) => state.accountDetails);
   const [amount, setAmount] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);

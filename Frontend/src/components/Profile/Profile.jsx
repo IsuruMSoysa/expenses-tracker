@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import ProjectButton from "../../components/common/Button";
 import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAccountDetails } from "../../features/accountDetails/accountDetailsSlice";
+import { useSelector } from "react-redux";
 import InnrerLoading from "../common/InnerLoading";
 import { calculateAge } from "../../utils/calculateAge";
 
@@ -27,7 +26,6 @@ function Profile() {
       className="prof-det-pop-cont justify-item-center"
       id="expenseDetailsWindow"
     >
-      {/* <Col xl={3}></Col> */}
       <Col className="prof-details-crd-cont text-center py-3 px-4" xl={6}>
         <Row>
           <Col className="profile-pc-cont p-3">
@@ -125,7 +123,6 @@ function Profile() {
           </Col>
         </Row>
       </Col>
-      {/* <Col xl={3}></Col> */}
     </Row>
   );
 }

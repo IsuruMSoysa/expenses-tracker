@@ -44,14 +44,6 @@ export const login = (email, password) => async (dispatch) => {
     return { success: true, message: "Login Success", uid: user.uid };
   } catch (error) {
     dispatch(loginFailure(error.message));
-    // alert("error:", error);
-    // console.log(error.message);
-    // if (error.message == "Firebase: Error (auth/wrong-password).") {
-    //   return { success: false, message: "Wrong password!" };
-    // } else {
-    //   return { success: false, message: "Unexpected error occured!" };
-    // }
-
     switch (error.message) {
       case "Firebase: Error (auth/user-not-found).":
         return { success: false, message: "Email not found!" };
@@ -75,7 +67,6 @@ export const signup = (email, password) => async (dispatch) => {
     return { success: true, error: error.message };
   }
 };
-// export const initAuth = initAuth();
 
 //fire store user creation
 export const fetchUser = createAsyncThunk("expenses/fetchUser", async () => {

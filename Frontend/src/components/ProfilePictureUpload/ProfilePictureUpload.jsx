@@ -1,16 +1,9 @@
-import React, { useState, useRef } from "react";
-import { Row, Col, Button } from "react-bootstrap";
-import ReactCrop from "react-image-crop";
+import { useState, useRef } from "react";
+import { Row, Col } from "react-bootstrap";
 import "react-image-crop/dist/ReactCrop.css";
 import ProjectButton from "../common/Button";
 import { useNavigate, useParams } from "react-router";
-import {
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  listAll,
-  list,
-} from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 import { storage } from "../../firebase-config";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
@@ -79,7 +72,6 @@ function ProfilePictureUpload() {
     uploadBytes(imageRef, file).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImageUploadedUrl(url);
-        console.log("url", url);
         const editObj = {
           imageUrl: url,
         };

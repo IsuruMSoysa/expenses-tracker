@@ -1,4 +1,4 @@
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import ProjectButton from "../../components/common/Button";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -189,7 +189,6 @@ function ViewExpensesPage() {
           </Col>
         </Row>
       </Col>
-      {/* <Col xl={3}></Col> */}
     </Row>
   );
 }

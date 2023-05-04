@@ -70,7 +70,6 @@ function Navbar() {
         className="hamb-btn"
         onClick={() => {
           setHambActive(!hambActive);
-          console.log(path);
         }}
       >
         <span className="material-symbols-outlined">menu</span>
