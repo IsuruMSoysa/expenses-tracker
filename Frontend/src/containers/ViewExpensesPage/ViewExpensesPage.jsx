@@ -42,14 +42,6 @@ function ViewExpensesPage() {
   function handleDeleteItem(e) {
     e.preventDefault();
     dispatch(toggleLoading());
-    // dispatch(
-    //   setAlert({
-    //     message: "Something happened!",
-    //     isVisible: true,
-    //     type: "danger",
-    //   })
-    // );
-    dispatch(toggleLoading());
     dispatch(deleteExpense(itemid));
     dispatch(toggleLoading());
     navigate(`/dashboard/${id}`);
