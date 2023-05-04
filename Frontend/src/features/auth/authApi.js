@@ -5,13 +5,7 @@ import {
 import { auth } from "../../firebase-config";
 import { loginSuccess, logout } from "./authSlice";
 import { db } from "../../firebase-config";
-import {
-  collection,
-  getDocs,
-  addDoc,
-  updateDoc,
-  doc,
-} from "@firebase/firestore";
+import { collection, getDocs, addDoc } from "@firebase/firestore";
 
 const usersCollectionRef = collection(db, "users");
 

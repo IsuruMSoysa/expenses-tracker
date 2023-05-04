@@ -14,40 +14,18 @@ export const fetchAccountDetails = createAsyncThunk(
   }
 );
 
-// export const createExpense = createAsyncThunk(
-//   "expenses/createExpense",
-//   async (expense) => {
-//     const docRef = await addExpenses(expense);
-//     return { ...expense, id: docRef.id };
-//   }
-// );
-
 export const updateAccountDetails = createAsyncThunk(
   "expenses/updateAccountDetails",
   async ({ id, editObj }) => {
     const docRef = await editAccountDetails(id, editObj);
-    console.log("hello wrld", editObj, docRef);
     return { ...editObj, id: docRef.id };
   }
 );
-
-// export const deleteExpense = createAsyncThunk(
-//   "expenses/deleteExpense",
-//   async (id) => {
-//     await deleteDoc(id);
-//     return id;
-//   }
-// );
 
 const accountDetailsSlice = createSlice({
   name: "accountDetails",
   initialState,
   reducers: {},
-  //   fetchExpenses(state, action) {
-  //     console.log("hey", action.payload);
-  //     state.expenses = action.payload;
-  //   },
-  // },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAccountDetails.pending, (state) => {
@@ -70,7 +48,5 @@ const accountDetailsSlice = createSlice({
 });
 
 const { reducer, actions } = accountDetailsSlice;
-// export const expensesReducer = accountDetailsSlice.reducer;
 
-// export const { setExpenses, increaseEarnings } = actions;
 export default reducer;

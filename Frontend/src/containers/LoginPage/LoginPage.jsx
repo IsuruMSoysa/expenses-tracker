@@ -4,7 +4,7 @@ import { useState } from "react";
 import ProjectButton from "../../components/common/Button";
 import { Row, Col, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "./../../features/auth/authSlice";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
 
@@ -15,7 +15,6 @@ function LoginPage() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const authObj = useSelector((state) => state.auth);
 
   const handleSubmit = async (e) => {
     dispatch(toggleLoading());

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ProjectButton from "../../components/common/Button";
 import { Row, Col, Form, Dropdown, DropdownButton } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,7 +8,6 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
 import { updateExpense } from "../../features/expenses/expensesSlice";
-import { fetchAccountDetails } from "../../features/accountDetails/accountDetailsSlice";
 import { Modal } from "antd";
 
 function EditExpensePage() {
@@ -26,10 +25,6 @@ function EditExpensePage() {
   const handleDateChange = (value) => {
     setDate(value);
   };
-
-  // useEffect(() => {
-  //   dispatch(fetchAccountDetails(id));
-  // }, []);
 
   function handleEditExpense(e) {
     e.preventDefault();
@@ -152,7 +147,6 @@ function EditExpensePage() {
                 backgroundColor="#0ad357"
                 size="small"
                 type="submit"
-                // btnOnClick={() => navigate("/login")}
               />
               <ProjectButton
                 label="Back"
@@ -160,7 +154,6 @@ function EditExpensePage() {
                 size="small"
                 color="#ffffff"
                 btnOnClick={() => navigate(-1)}
-                //btnOnClick={success("mission success")}
                 type="reset"
               />
             </Form.Group>

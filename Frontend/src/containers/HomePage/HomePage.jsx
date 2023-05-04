@@ -24,7 +24,7 @@ function HomePage() {
           label="Sign up"
           backgroundColor="#0ad357"
           size="small"
-          btnOnClick={() => navigate("/login")}
+          btnOnClick={() => navigate("/signup")}
         />
       </Col>
     </Row>

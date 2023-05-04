@@ -5,7 +5,7 @@ import { Row, Col, Form, Dropdown, DropdownButton } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
 import {
   signup,
@@ -18,8 +18,6 @@ const countriesAPI = "https://restcountries.com/v3.1/all";
 function SignUpPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const authObj = useSelector((state) => state.auth);
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -43,10 +41,12 @@ function SignUpPage() {
       .then((res) => res.json())
       .then((data) => {
         // Transform API response to an array of objects containing label and value properties
-        const transformedData = data.map((country) => ({
-          label: country.name.common,
-          value: country.alpha2Code,
-        }));
+        const transformedData = data
+          .map((country) => ({
+            label: country.name.common,
+            value: country.alpha2Code,
+          }))
+          .sort((a, b) => a.label.localeCompare(b.label)); // Sort by label in alphabetical order
         setCountryList(transformedData);
       })
       .catch((error) => console.log(error));
@@ -72,7 +72,6 @@ function SignUpPage() {
   }
 
   const handleCreateAccount = async (event) => {
-    let validation;
     event.preventDefault();
     let dataObj = {
       firstName: firstName,
@@ -104,18 +103,6 @@ function SignUpPage() {
       console.log(error.message);
     }
     dispatch(toggleLoading());
-
-    // signUpWithEmailPassword(props.email, password).then((response) => {
-    //   validation = response;
-    //   console.log(response);
-    //   if (validation.uid) {
-    //     props.setPanel(4);
-    //     localStorage.setItem("accessToken", validation.accessToken);
-    //     localStorage.setItem("uid", validation.uid);
-    //   } else {
-    //     alert("Login Fail");
-    //   }
-    // });
   };
 
   function comparePassword(event) {

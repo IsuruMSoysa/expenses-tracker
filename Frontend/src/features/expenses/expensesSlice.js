@@ -16,8 +16,6 @@ export const fetchExpenses = createAsyncThunk(
   "expenses/fetchExpenses",
   async (userId) => {
     const data = await getExpenses(userId);
-
-    //const userExpenses = filterExpenseForUser(data, selectUserId);
     return data;
   }
 );
@@ -50,11 +48,6 @@ const expensesSlice = createSlice({
   name: "expenses",
   initialState,
   reducers: {},
-  //   fetchExpenses(state, action) {
-  //     console.log("hey", action.payload);
-  //     state.expenses = action.payload;
-  //   },
-  // },
   extraReducers: (builder) => {
     builder
       .addCase(fetchExpenses.pending, (state) => {
