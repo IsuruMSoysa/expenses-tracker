@@ -20,6 +20,7 @@ import { async } from "@firebase/util";
 import LoadingScreen from "./components/common/LoadingScreen/LoadingScreen";
 import { useSelector } from "react-redux";
 import PrivateRoute from "./components/PrivateRoute";
+import IncreaseEarningsPage from "./containers/IncreaseEarnings/IncreaseEarnings";
 
 const router = createBrowserRouter([
   {
@@ -96,6 +97,14 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <ProfilePictureUpload />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/increaseearnings/:id",
+    element: (
+      <PrivateRoute>
+        <IncreaseEarningsPage />
       </PrivateRoute>
     ),
   },

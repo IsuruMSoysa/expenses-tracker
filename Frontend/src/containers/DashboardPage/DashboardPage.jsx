@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchExpenses } from "./../../features/expenses/expensesSlice";
 import { useParams } from "react-router-dom";
 import { setExpenses } from "../../features/cardDetails/cardDetailsSlice";
+import { fetchAccountDetails } from "../../features/accountDetails/accountDetailsSlice";
 
 function DashboardPage() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function DashboardPage() {
   const expensesArr = useSelector((state) => state.expenses);
   const cards = useSelector((state) => state.cards);
   const user = useSelector((state) => state.auth);
+  const userDetails = useSelector((state) => state.accountDetails);
   const [userExpenseArray, setUserExpenseArray] = useState([]);
 
   useEffect(
@@ -31,10 +33,15 @@ function DashboardPage() {
   useEffect(
     () => {
       dispatch(setExpenses(expensesArr.expenses));
+      dispatch(fetchAccountDetails(id));
     },
     [expensesArr],
     []
   );
+
+  useEffect(() => {
+    dispatch(fetchAccountDetails(id));
+  }, []);
 
   return (
     <>
@@ -55,7 +62,12 @@ function DashboardPage() {
                   <Row>
                     <Col className="total-card text-center">
                       <label>Total Earnings</label>
-                      <h4>Rs. {cards.totalEarnings}</h4>
+                      <h4>
+                        Rs.{" "}
+                        {userDetails.currentUserDetails
+                          ? userDetails.currentUserDetails.totalEarning
+                          : 0}
+                      </h4>
                     </Col>
                     <Col className="total-card text-center">
                       <label>Total Expenses</label>
@@ -65,7 +77,13 @@ function DashboardPage() {
                   <Row>
                     <Col className="total-card text-center">
                       <label>Total Leftover</label>
-                      <h2>Rs. {cards.totalEarnings - cards.totalExpenses}</h2>
+                      <h2>
+                        Rs.{" "}
+                        {userDetails.currentUserDetails
+                          ? userDetails.currentUserDetails.totalEarning -
+                            cards.totalExpenses
+                          : 0}
+                      </h2>
                     </Col>
                   </Row>
                 </Col>
