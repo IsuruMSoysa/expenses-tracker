@@ -67,7 +67,7 @@ function EditExpensePage() {
                 maxLength="10"
                 placeholder="Enter Expense name"
                 onChange={(event) => {
-                  const remainingChars = 10 - event.target.value.length;
+                  const remainingChars = 15 - event.target.value.length;
                   const label = document.getElementById("expenseNameLabel");
                   label.textContent = `Remaining characters: ${remainingChars}`;
                   setName(event.target.value);
