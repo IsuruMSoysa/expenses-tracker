@@ -86,6 +86,7 @@ function SignUpPage() {
       password: password,
       authId: null,
       imageUrl: null,
+      totalEarning: 0,
     };
     dispatch(toggleLoading());
 

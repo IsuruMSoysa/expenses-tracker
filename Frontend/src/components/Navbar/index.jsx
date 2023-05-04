@@ -12,8 +12,8 @@ function Navbar() {
   const [hambActive, setHambActive] = useState(false);
 
   const navLabel = ["Dashboard", "Archived", "Account", "Logout"].map((e) => {
-    return path.toLocaleLowerCase() === e.toLocaleLowerCase() ? (
-      <Col className="nav-menuitem-selected  px-1">
+    return path && path.toLowerCase().includes(e.toLowerCase()) ? (
+      <Col className="nav-menuitem-selected  px-4">
         <label>{e}</label>
       </Col>
     ) : e === "Logout" ? (
@@ -28,6 +28,7 @@ function Navbar() {
         }}
       >
         {e}
+        {/* {hambActive ? <hr /> : null} */}
       </Col>
     );
   });
@@ -52,6 +53,7 @@ function Navbar() {
         className="hamb-btn"
         onClick={() => {
           setHambActive(!hambActive);
+          console.log(path);
         }}
       >
         <span className="material-symbols-outlined">menu</span>

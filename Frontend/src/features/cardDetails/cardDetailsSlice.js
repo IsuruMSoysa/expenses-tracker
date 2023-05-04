@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  totalEarnings: 100000,
   totalExpenses: 0,
   categoryArray: [],
 };
@@ -14,9 +13,6 @@ const cardSlice = createSlice({
       let cardObject = calcTotalExpenses(action.payload);
       state.totalExpenses = cardObject.total;
       state.categoryArray = cardObject.categoryArray;
-    },
-    increaseEarnings: (state, action) => {
-      state.totalEarnings = state.totalEarnings + action.payload;
     },
   },
 });
