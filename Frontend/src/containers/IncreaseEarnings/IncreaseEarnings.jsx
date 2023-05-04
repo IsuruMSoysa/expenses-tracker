@@ -49,7 +49,7 @@ function IncreaseEarningsPage() {
         onOk={handleIncreaseEarnings}
         onCancel={() => setModalOpen(false)}
       ></Modal>
-      <Col className="increase-earning  p-md-4" xl={6} md={5} sm={6} xs={10}>
+      <Col className="increase-earning  p-md-4" xl={4} md={5} sm={6} xs={10}>
         <h4 className="text-center py-3 mt-4">Increase Earnings By</h4>
         <Form
           onSubmit={(e) => {
@@ -57,8 +57,8 @@ function IncreaseEarningsPage() {
             setModalOpen(true);
           }}
         >
-          <Form.Group className="row">
-            <Form.Group className="col-xl-6 mb-3" controlId="formAmount">
+          <Form.Group className="">
+            <Form.Group className=" my-3" controlId="formAmount">
               <Form.Label>Amount</Form.Label>
               <Form.Control
                 type="number"
@@ -69,7 +69,7 @@ function IncreaseEarningsPage() {
                 }}
               />
             </Form.Group>
-            <Form.Group className="text-center" controlId="addExpBtn">
+            <Form.Group className="text-center pt-3" controlId="addExpBtn">
               <ProjectButton
                 label="Increase Earnings"
                 backgroundColor="#0ad357"

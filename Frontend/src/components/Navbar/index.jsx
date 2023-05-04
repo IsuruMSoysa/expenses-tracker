@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { Modal } from "antd";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ function Navbar() {
   const user = useSelector((state) => state.auth);
   const path = location.pathname.substring(1);
   const [hambActive, setHambActive] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const navLabel = ["Dashboard", "Archived", "Account", "Logout"].map((e) => {
     return path && path.toLowerCase().includes(e.toLowerCase()) ? (
@@ -17,7 +19,12 @@ function Navbar() {
         <label>{e}</label>
       </Col>
     ) : e === "Logout" ? (
-      <Col className="nav-menuitem py-1" onClick={handleLogOut}>
+      <Col
+        className="nav-menuitem py-1"
+        onClick={() => {
+          setModalOpen(true);
+        }}
+      >
         Logout
       </Col>
     ) : (
@@ -39,6 +46,16 @@ function Navbar() {
   }
   return (
     <Row className="navbar-cont text-center mx-2">
+      <Modal
+        title="Do you want to logout?"
+        centered
+        open={modalOpen}
+        onOk={(e) => {
+          e.preventDefault();
+          handleLogOut();
+        }}
+        onCancel={() => setModalOpen(false)}
+      ></Modal>
       <Col className="logo-section text-start ps-4" lg={5} md={4}>
         Expenses Tracker
       </Col>

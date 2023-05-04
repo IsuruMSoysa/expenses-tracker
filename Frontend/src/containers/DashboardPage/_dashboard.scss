@@ -51,5 +51,38 @@
 .add-btn-section {
   position: fixed;
   bottom: 6vh;
-  right: 10vh;
+  right: 7vw;
+}
+
+@media screen and (max-width: 790px) {
+  .add-btn-section {
+    right: 6vw;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .add-btn-section {
+    right: 6vw;
+    bottom: 5vh;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .add-btn-section {
+    right: 5vw;
+    bottom: 4vh;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .add-btn-section {
+    right: 4vw;
+  }
+}
+
+@media screen and (max-width: 100px) {
+  .add-btn-section {
+    right: 3vw;
+    bottom: 3vh;
+  }
 }
