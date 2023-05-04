@@ -11,6 +11,8 @@ import { fetchExpenses } from "./../../features/expenses/expensesSlice";
 import { useParams } from "react-router-dom";
 import { setExpenses } from "../../features/cardDetails/cardDetailsSlice";
 import { fetchAccountDetails } from "../../features/accountDetails/accountDetailsSlice";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function DashboardPage() {
   const dispatch = useDispatch();

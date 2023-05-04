@@ -28,7 +28,6 @@ function CategoryData() {
   useEffect(
     () => {
       chartObjCpy.datasets[0].data = chartData.categoryArray;
-      console.log("chatdata", chartData);
     },
     [chartData],
     []
@@ -39,7 +38,6 @@ function CategoryData() {
       const redrawTimeout = setTimeout(() => {
         chartObjCpy.datasets[0].data = chartData.categoryArray;
         setShouldRedraw(true);
-        console.log("chatdata", chartData);
       }, 3000);
       return () => clearTimeout(redrawTimeout);
     },

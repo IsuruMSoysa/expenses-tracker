@@ -10,6 +10,7 @@ import {
   updateExpense,
 } from "../../features/expenses/expensesSlice";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
+import { Modal } from "antd";
 
 function ViewExpensesPage() {
   const navigate = useNavigate();
@@ -17,6 +18,9 @@ function ViewExpensesPage() {
   let { id, itemid } = useParams();
   const expensesArr = useSelector((state) => state.expenses);
   const [expObj, setExpObj] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen2, setModalOpen2] = useState(false);
+  const [modalOpen3, setModalOpen3] = useState(false);
 
   useEffect(() => {
     if (expensesArr.expenses) {
@@ -76,6 +80,27 @@ function ViewExpensesPage() {
   const renderDetails = expObj && (
     <>
       <Row>
+        <Modal
+          title="Do you Want to delete this item?"
+          centered
+          open={modalOpen}
+          onOk={handleDeleteItem}
+          onCancel={() => setModalOpen(false)}
+        ></Modal>
+        <Modal
+          title="Do you Want to archive this item?"
+          centered
+          open={modalOpen2}
+          onOk={handleArchiveItem}
+          onCancel={() => setModalOpen2(false)}
+        ></Modal>
+        <Modal
+          title="Do you Want to restore this item?"
+          centered
+          open={modalOpen3}
+          onOk={handleRestoreItem}
+          onCancel={() => setModalOpen3(false)}
+        ></Modal>
         <Col className="exp-title text-start">
           <h3>{expObj.name}</h3>
         </Col>
@@ -122,7 +147,10 @@ function ViewExpensesPage() {
               label="Delete"
               backgroundColor="#ff5d96"
               size="small"
-              btnOnClick={handleDeleteItem}
+              btnOnClick={(e) => {
+                e.preventDefault();
+                setModalOpen(true);
+              }}
             />
           </Col>
           <Col className="">
@@ -132,14 +160,20 @@ function ViewExpensesPage() {
                   label="Restore"
                   backgroundColor="#00DEFF"
                   size="small"
-                  btnOnClick={handleRestoreItem}
+                  btnOnClick={(e) => {
+                    e.preventDefault();
+                    setModalOpen3(true);
+                  }}
                 />
               ) : (
                 <ProjectButton
                   label="Archive"
                   backgroundColor="#D5B0E2"
                   size="small"
-                  btnOnClick={handleArchiveItem}
+                  btnOnClick={(e) => {
+                    e.preventDefault();
+                    setModalOpen2(true);
+                  }}
                 />
               )
             ) : null}
