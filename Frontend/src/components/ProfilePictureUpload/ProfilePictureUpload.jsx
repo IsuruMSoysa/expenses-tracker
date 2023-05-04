@@ -93,7 +93,7 @@ function ProfilePictureUpload() {
   return (
     <Row className="text-center profile-pic-update-cont">
       <Modal
-        title="Save Expence?"
+        title="Save Image?"
         centered
         open={modalOpen}
         onOk={handleUploadButtonClick}

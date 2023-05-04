@@ -39,10 +39,11 @@ function LoginPage() {
     <Row className="login-cont">
       <Col className="login-panel p-md-4" xl={3} md={5} sm={6} xs={10}>
         <h4 className="text-center py-3">Expenses Tracker</h4>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control
+              required
               type="email"
               placeholder="Enter email"
               onChange={(e) => {
@@ -54,6 +55,7 @@ function LoginPage() {
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
+              required
               type="password"
               placeholder="Password"
               onChange={(e) => {
@@ -66,7 +68,7 @@ function LoginPage() {
               label="Log in"
               backgroundColor="#0ad357"
               size="small"
-              btnOnClick={handleSubmit}
+              type="submit"
             />
           </Form.Group>
           <Form.Group
