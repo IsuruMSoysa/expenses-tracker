@@ -12,6 +12,7 @@ import {
   fetchAccountDetails,
   updateAccountDetails,
 } from "../../features/accountDetails/accountDetailsSlice";
+import { Modal } from "antd";
 
 function IncreaseEarningsPage() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ function IncreaseEarningsPage() {
   const currentUser = useSelector((state) => state.auth);
   const userDetails = useSelector((state) => state.accountDetails);
   const [amount, setAmount] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     if (!userDetails.currentUserDetails) dispatch(fetchAccountDetails(id));
@@ -40,9 +42,21 @@ function IncreaseEarningsPage() {
   }
   return (
     <Row className="increase-earning-cont mx-3 my-2">
+      <Modal
+        title="Increse Earnings amount?"
+        centered
+        open={modalOpen}
+        onOk={handleIncreaseEarnings}
+        onCancel={() => setModalOpen(false)}
+      ></Modal>
       <Col className="increase-earning  p-md-4" xl={6} md={5} sm={6} xs={10}>
         <h4 className="text-center py-3 mt-4">Increase Earnings By</h4>
-        <Form onSubmit={handleIncreaseEarnings}>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setModalOpen(true);
+          }}
+        >
           <Form.Group className="row">
             <Form.Group className="col-xl-6 mb-3" controlId="formAmount">
               <Form.Label>Amount</Form.Label>

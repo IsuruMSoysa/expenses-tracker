@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAccountDetails } from "../../features/accountDetails/accountDetailsSlice";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
+import { Modal } from "antd";
 
 const countriesAPI = "https://restcountries.com/v3.1/all";
 
@@ -18,6 +19,7 @@ function EditProfilePage() {
   const { id } = useParams();
   const [dob, setDob] = useState(userObject.currentUserDetails.dob.toDate());
   const [countryList, setCountryList] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(
     userObject.currentUserDetails.country
   );
@@ -74,9 +76,21 @@ function EditProfilePage() {
 
   return (
     <Row className="edit-prof-cont mx-3 my-2">
+      <Modal
+        title="Save Details?"
+        centered
+        open={modalOpen}
+        onOk={handleEditProfileSubmit}
+        onCancel={() => setModalOpen(false)}
+      ></Modal>
       <Col className="edit-prof-panel p-md-4" xl={6} md={5} sm={6} xs={10}>
         <h4 className="text-center py-3 mt-4">Edit Profile Details</h4>
-        <Form onSubmit={handleEditProfileSubmit}>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setModalOpen(true);
+          }}
+        >
           <Form.Group className="row">
             <Form.Group className="col-xl-6 mb-3" controlId="formFirstName">
               <Form.Label>First Name</Form.Label>
@@ -185,6 +199,7 @@ function EditProfilePage() {
                 size="small"
                 color="#ffffff"
                 btnOnClick={() => navigate(-1)}
+                type="reset"
               />
             </Form.Group>
           </Form.Group>

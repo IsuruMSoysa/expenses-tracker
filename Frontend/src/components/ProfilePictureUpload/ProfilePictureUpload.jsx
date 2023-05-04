@@ -16,6 +16,7 @@ import { storage } from "../../firebase-config";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
 import { useDispatch } from "react-redux";
 import { updateAccountDetails } from "../../features/accountDetails/accountDetailsSlice";
+import { Modal } from "antd";
 
 function ProfilePictureUpload() {
   const Navigate = useNavigate();
@@ -25,6 +26,7 @@ function ProfilePictureUpload() {
   const [crop, setCrop] = useState({ aspect: 1 / 1 });
   const [previewUrl, setPreviewUrl] = useState(null);
   const [imageUploadedUrl, setImageUploadedUrl] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const fileInputRef = useRef();
   const imagesListRef = ref(storage, "images/");
@@ -90,6 +92,13 @@ function ProfilePictureUpload() {
 
   return (
     <Row className="text-center profile-pic-update-cont">
+      <Modal
+        title="Save Expence?"
+        centered
+        open={modalOpen}
+        onOk={handleUploadButtonClick}
+        onCancel={() => setModalOpen(false)}
+      ></Modal>
       <Col>
         <h4 htmlFor="profile-picture-upload">Upload Profile Picture</h4>
         {previewUrl ? (
@@ -128,7 +137,10 @@ function ProfilePictureUpload() {
           label="Save"
           backgroundColor="#0ad357"
           size="small"
-          btnOnClick={handleUploadButtonClick}
+          btnOnClick={(e) => {
+            e.preventDefault();
+            setModalOpen(true);
+          }}
         />
         <ProjectButton
           label="Cancel"

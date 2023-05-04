@@ -9,6 +9,7 @@ import { createExpense } from "../../features/expenses/expensesSlice";
 import { useDispatch } from "react-redux";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
 import { useSelector } from "react-redux";
+import { Modal } from "antd";
 
 function AddExpensePage() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ function AddExpensePage() {
   const [amount, setAmount] = useState();
   const [selectedType, setSelectedType] = useState(null);
   const [description, setDescription] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
 
   const typeList = ["Transport", "Food", "Rent", "Entertainment", "Utilities"];
 
@@ -45,9 +47,21 @@ function AddExpensePage() {
   }
   return (
     <Row className="create-expense-cont mx-3 my-2">
+      <Modal
+        title="Save Expence?"
+        centered
+        open={modalOpen}
+        onOk={handleCreateExpense}
+        onCancel={() => setModalOpen(false)}
+      ></Modal>
       <Col className="create-expense  p-md-4" xl={6} md={5} sm={6} xs={10}>
         <h4 className="text-center py-3 mt-4">Add Expense Item</h4>
-        <Form onSubmit={handleCreateExpense}>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setModalOpen(true);
+          }}
+        >
           <Form.Group className="row">
             <Form.Group className="col-xl-6 mb-3" controlId="forExpenseName">
               <Form.Label>Expense Name</Form.Label>
@@ -141,6 +155,7 @@ function AddExpensePage() {
                 backgroundColor="#717171"
                 size="small"
                 color="#ffffff"
+                type="reset"
                 btnOnClick={() => navigate(-1)}
               />
             </Form.Group>

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleLoading } from "../../features/loadingScreen/loadingSlice";
 import { updateExpense } from "../../features/expenses/expensesSlice";
 import { fetchAccountDetails } from "../../features/accountDetails/accountDetailsSlice";
+import { Modal } from "antd";
 
 function EditExpensePage() {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function EditExpensePage() {
   const navigate = useNavigate();
   const [name, setName] = useState(selectedObj.name);
   const [amount, setAmount] = useState(selectedObj.amount);
-
+  const [modalOpen, setModalOpen] = useState(false);
   const [date, setDate] = useState(selectedObj.date.toDate());
   const typeList = ["Transport", "Food", "Rent", "Entertainment", "Utilities"];
   const [selectedType, setSelectedType] = useState(selectedObj.type);
@@ -42,13 +43,26 @@ function EditExpensePage() {
     };
     dispatch(updateExpense({ itemid, editObj }));
     dispatch(toggleLoading());
-    navigate(`/dashboard/${id}`);
+    setTimeout(navigate(`/dashboard/${id}`), 2000);
   }
+
   return (
     <Row className="edit-expense-cont mx-3 my-2">
       <Col className="edit-expense  p-md-4" xl={6} md={5} sm={6} xs={10}>
+        <Modal
+          title="Save Expence?"
+          centered
+          open={modalOpen}
+          onOk={handleEditExpense}
+          onCancel={() => setModalOpen(false)}
+        ></Modal>
         <h4 className="text-center py-3 mt-4">Edit Expense Item</h4>
-        <Form onSubmit={handleEditExpense}>
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setModalOpen(true);
+          }}
+        >
           <Form.Group className="row">
             <Form.Group className="col-xl-6 mb-3" controlId="forExpenseName">
               <Form.Label>Expense Name</Form.Label>
@@ -146,6 +160,8 @@ function EditExpensePage() {
                 size="small"
                 color="#ffffff"
                 btnOnClick={() => navigate(-1)}
+                //btnOnClick={success("mission success")}
+                type="reset"
               />
             </Form.Group>
           </Form.Group>

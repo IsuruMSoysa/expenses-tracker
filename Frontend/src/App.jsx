@@ -21,6 +21,7 @@ import LoadingScreen from "./components/common/LoadingScreen/LoadingScreen";
 import { useSelector } from "react-redux";
 import PrivateRoute from "./components/PrivateRoute";
 import IncreaseEarningsPage from "./containers/IncreaseEarnings/IncreaseEarnings";
+import Alert from "./components/AlertButton";
 
 const router = createBrowserRouter([
   {
